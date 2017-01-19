@@ -1,8 +1,11 @@
 import React from 'react';
 import NavLink from './NavLink';
+import '../styles/Header.css';
 
 const Header = () => (
-	<header>
+	<header
+		className="Header"
+	>
 		<div>
 			<p>search</p>
 		</div>
