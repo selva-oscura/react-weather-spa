@@ -1,11 +1,14 @@
 import React from 'react';
 
-const NavLink = ({id}) => (
+const NavLink = ({id}) => {
+	let display;
+	display = id[0];
+	return (
 	<div className="NavLink"
 		id={id}
 	>
-		<p>{id.toUpperCase()}</p>
+		<p>{display.toUpperCase()}</p>
 	</div>
-)
+)}
 
 export default NavLink
