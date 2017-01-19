@@ -2,18 +2,20 @@ import React from 'react';
 import NavLink from './NavLink';
 import '../styles/Header.css';
 
-const Header = () => (
+const Header = ({handleNav}) => (
 	<header
 		className="Header"
 	>
 		<div>
-			<p>search</p>
+			<p>search to go here</p>
 		</div>
 		<NavLink 
-			id="favorites"
+			pageLink="favorites"
+			handleNav={handleNav}
 		/>
 		<NavLink 
-			id="settings"
+			pageLink="settings"
+			handleNav={handleNav}
 		/>
 	</header>
 )
