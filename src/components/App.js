@@ -20,7 +20,7 @@ const App = React.createClass({
 		}
 	},
 	handleNav(e){
-		console.log('clicked', e.target.className)
+		this.setState({currPage:e.target.className});
 	},
   render() {
     return (
@@ -34,6 +34,6 @@ const App = React.createClass({
       </div>
     );
   }
-})
+});
 
 export default App;
