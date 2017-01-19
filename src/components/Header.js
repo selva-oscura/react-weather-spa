@@ -1,16 +1,17 @@
 import React from 'react';
+import NavLink from './NavLink';
 
 const Header = () => (
 	<header>
 		<div>
 			<p>search</p>
 		</div>
-		<div>
-			<p>faves</p>
-		</div>
-		<div>
-			<p>preferences</p>
-		</div>
+		<NavLink 
+			id="favorites"
+		/>
+		<NavLink 
+			id="settings"
+		/>
 	</header>
 )
 
