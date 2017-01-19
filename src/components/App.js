@@ -25,7 +25,9 @@ const App = React.createClass({
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header 
+        	handleNav={this.handleNav}
+        />
         <Body 
         	currPage={this.state.currPage}
         />
