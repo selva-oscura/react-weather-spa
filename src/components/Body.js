@@ -1,4 +1,8 @@
 import React from 'react';
+import Detail from './Detail';
+import Favorites from './Favorites';
+import Settings from './Settings';
+import Splash from './Splash';
 import '../styles/Body.css';
 
 const Body = ({currPage}) => {
@@ -6,27 +10,27 @@ const Body = ({currPage}) => {
 	switch(currPage){
 		case "splash":
 			page = (
-				<h3>splash</h3>
-			); 
+				<Splash />
+			);
 			break;
 		case "detail":
 			page = (
-				<h3>detail</h3>
+				<Detail />
 			);
 			break;
 		case "favorites":
 			page = (
-				<h3>favorites</h3>
-			); 
+				<Favorites />
+			);
 			break;
 		case "settings":
 			page = (
-				<h3>settings</h3>
-			); 
+				<Settings />
+			);
 			break;
 		default:
 			page = (
-				<h3>default</h3>
+				<Splash />
 			);
 			break;
 	}
