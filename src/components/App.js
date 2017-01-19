@@ -19,12 +19,16 @@ const App = React.createClass({
 			error: "",
 		}
 	},
+	handleNav(e){
+		console.log('clicked', e.target.className)
+	},
   render() {
     return (
       <div className="App">
         <Header />
-        <Body />
-        <p>{this.state.currPage}</p>
+        <Body 
+        	currPage={this.state.currPage}
+        />
       </div>
     );
   }
