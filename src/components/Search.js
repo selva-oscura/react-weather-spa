@@ -1,7 +1,7 @@
 import React from 'react';
 import countries from '../resources/countries.json';
 
-const Search = ({ defaultValue }) => {
+const Search = ({ defaultValue, submitLocation, updateLocation }) => {
 	let options = countries.map((country) => {
 		return (
 			<option 
@@ -16,6 +16,7 @@ const Search = ({ defaultValue }) => {
 		<form 
 			className="Search"
 			id="searchForm"
+			onSubmit={submitLocation}
 		>
 			<label
 				htmlFor="city"
@@ -24,6 +25,7 @@ const Search = ({ defaultValue }) => {
 					type="text"
 					id="city"
 					placeholder="city, state"
+					onChange={updateLocation}
 				/>
 			</label>
 			<label 
@@ -33,6 +35,7 @@ const Search = ({ defaultValue }) => {
 					id="country"
 					name="select"
 					value={defaultValue}
+					onChange={updateLocation}
 				>
 					{options}
 				</select>
