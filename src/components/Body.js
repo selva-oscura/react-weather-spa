@@ -1,11 +1,13 @@
 import React from 'react';
 import Detail from './Detail';
+import Errors from './Errors';
 import Favorites from './Favorites';
+import Response from './Response';
 import Settings from './Settings';
 import Splash from './Splash';
 import '../styles/Body.css';
 
-const Body = ({currPage}) => {
+const Body = ({currPage, errors, response}) => {
 	let page;
 	switch(currPage){
 		case "splash":
@@ -36,6 +38,12 @@ const Body = ({currPage}) => {
 	}
 	return (
 		<section className="Body">
+			<Errors 
+				errors={errors}
+			/>
+			<Response
+				response={response}
+			/>
 			{page}
 		</section>
 	)
