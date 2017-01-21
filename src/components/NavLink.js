@@ -1,17 +1,25 @@
 import React from 'react';
 
 const NavLink = ({pageLink, handleNav}) => {
-	let display;
-	display = pageLink[0];
+	let icon;
+	if(pageLink==="favorites"){
+		icon="glyphicon glyphicon-heart";
+	}else if(pageLink==="settings"){
+		icon="glyphicon glyphicon-cog";
+	}
+	const navLink = `NavLink ${pageLink}`;
 	return (
 			<div 
-				className="NavLink"
-				id={pageLink}
+				className={navLink}
 				onClick={handleNav}
 			>
 				<p
-					className={pageLink}
-				>{display.toUpperCase()}</p>
+				>
+					<span 
+						className={icon}
+						id={pageLink}
+					></span>
+				</p>
 			</div>
 	)
 }
