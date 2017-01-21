@@ -1,14 +1,17 @@
 import React from 'react';
+import Search from './Search';
 import NavLink from './NavLink';
 import '../styles/Header.css';
 
-const Header = ({handleNav}) => (
+const Header = ({defaultValue, submitLocation, updateLocation, handleNav}) => (
 	<header
 		className="Header"
 	>
-		<div>
-			<p>search to go here</p>
-		</div>
+		<Search 
+			defaultValue={defaultValue}
+			submitLocation={submitLocation}
+			updateLocation={updateLocation} 
+		/>
 		<NavLink 
 			pageLink="favorites"
 			handleNav={handleNav}
