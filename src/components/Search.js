@@ -1,8 +1,7 @@
 import React from 'react';
 import countries from '../resources/countries.json';
-console.log('countries', countries[0]);
 
-const Search = () => {
+const Search = ({ defaultValue }) => {
 	let options = countries.map((country) => {
 		return (
 			<option 
@@ -33,6 +32,7 @@ const Search = () => {
 				<select
 					id="country"
 					name="select"
+					value={defaultValue}
 				>
 					{options}
 				</select>
