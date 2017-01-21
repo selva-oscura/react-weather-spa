@@ -27,10 +27,26 @@ const App = React.createClass({
 		let searchInput = this.state.searchInput;
 		searchInput[e.target.id]=e.target.value;
 		this.setState({searchInput});
-		console.log(this.state);
 	},
 	submitLocation(e){
-		console.log('target', e.target)
+		e.preventDefault();
+		let {errors, response, searchInput} = this.state;
+		if(searchInput.city.length>0){
+			response = `Checking weather conditions for ${searchInput.city}, ${searchInput.country}.`;
+			errors = [];
+			this.queryWeatherAPI();
+		}else{
+			errors = ["Please enter a city (and state/province if needed)."];
+			response = "";
+		}
+		this.setState({response, errors});
+	},
+	queryWeatherAPI(){
+		let {city, country} = this.state.searchInput;
+		console.log(`single location query for ${city}, ${country} to go here`);
+	},
+	queriesWeatherAPI(){
+		console.log('multi-location query to go here');
 	},
   render() {
     return (
