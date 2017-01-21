@@ -22,8 +22,7 @@ const App = React.createClass({
 		}
 	},
 	handleNav(e){
-		console.log('target', e)
-		// this.setState({currPage:e.target.className});
+		this.setState({currPage:e.target.id});
 	},
 	updateLocation(e){
 		console.log('target',e.target.value, e.target.id);
