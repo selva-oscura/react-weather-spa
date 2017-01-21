@@ -27,6 +27,16 @@ const Search = () => {
 					placeholder="city, state"
 				/>
 			</label>
+			<label 
+				htmlFor="country"
+			>
+				<select
+					id="country"
+					name="select"
+				>
+					{options}
+				</select>
+			</label>
 			<input 
 				type="submit"
 				value="submit"
