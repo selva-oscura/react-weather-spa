@@ -11,11 +11,10 @@ const App = React.createClass({
 				city: "",
 				country: "",
 			},
-			defaultCountry: "US",
 			favedLocations: [],
 			searchInput: {
 				city: "",
-				country: "",
+				country: "US",
 			},
 			errors: [],
 			response: ""
@@ -25,7 +24,10 @@ const App = React.createClass({
 		this.setState({currPage:e.target.id});
 	},
 	updateLocation(e){
-		console.log('target',e.target.value, e.target.id);
+		let searchInput = this.state.searchInput;
+		searchInput[e.target.id]=e.target.value;
+		this.setState({searchInput});
+		console.log(this.state);
 	},
 	submitLocation(e){
 		console.log('target', e.target)
@@ -35,7 +37,7 @@ const App = React.createClass({
       <div className="App">
         <Header 
         	handleNav={this.handleNav}
-        	defaultValue={this.state.defaultCountry}
+        	defaultValue={this.state.searchInput.country}
         	submitLocation={this.submitLocation}
         	updateLocation={this.updateLocation}
         />
