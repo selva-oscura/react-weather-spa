@@ -1,8 +1,10 @@
 .Header {
+	background-color: #00BCD4;
   font-size: 30px;
   position: fixed; 
   top:0px;
   width:100vw;
+  height: 72px;
   z-index: 2;
   margin:0px;
   padding:0px;
@@ -10,6 +12,8 @@
 
 .Header div{
 	width: 60px;
+	text-align: center;
+	padding: 0 2vw;
 }
 .Header #favorites{
 	position: absolute;
@@ -29,4 +33,10 @@
 	left:0;
 	width: 100vw;
 	padding-right: 120px;
+}
+
+.Header p{
+	padding: 21px 0px;
+	margin:0px;
+	text-align: center;
 }
