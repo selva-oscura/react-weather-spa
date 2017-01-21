@@ -11,25 +11,39 @@ const App = React.createClass({
 				city: "",
 				country: "",
 			},
+			defaultCountry: "US",
 			favedLocations: [],
 			searchInput: {
 				city: "",
 				country: "",
 			},
-			error: "",
+			errors: [],
+			response: ""
 		}
 	},
 	handleNav(e){
-		this.setState({currPage:e.target.className});
+		console.log('target', e)
+		// this.setState({currPage:e.target.className});
+	},
+	updateLocation(e){
+		console.log('target',e.target.value, e.target.id);
+	},
+	submitLocation(e){
+		console.log('target', e.target)
 	},
   render() {
     return (
       <div className="App">
         <Header 
         	handleNav={this.handleNav}
+        	defaultValue={this.state.defaultCountry}
+        	submitLocation={this.submitLocation}
+        	updateLocation={this.updateLocation}
         />
         <Body 
         	currPage={this.state.currPage}
+        	errors={this.state.errors}
+        	response={this.state.response}
         />
       </div>
     );
