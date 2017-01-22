@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/Search.css';
 import countries from '../resources/countries.json';
 
 const Search = ({ defaultValue, submitLocation, updateLocation }) => {
@@ -13,38 +14,40 @@ const Search = ({ defaultValue, submitLocation, updateLocation }) => {
 		)
 	});
 	return (
-		<form 
+		<div
 			className="Search"
-			id="searchForm"
-			onSubmit={submitLocation}
 		>
-			<label
-				htmlFor="city"
+			<form 
+				onSubmit={submitLocation}
 			>
-				<input 
-					type="text"
-					id="city"
-					placeholder="city, state"
-					onChange={updateLocation}
-				/>
-			</label>
-			<label 
-				htmlFor="country"
-			>
-				<select
-					id="country"
-					name="select"
-					value={defaultValue}
-					onChange={updateLocation}
+				<label
+					htmlFor="city"
 				>
-					{options}
-				</select>
-			</label>
-			<input 
-				type="submit"
-				value="submit"
-			/>
-		</form>
+					<input 
+						type="text"
+						id="city"
+						placeholder="city, state"
+						onChange={updateLocation}
+					/>
+				</label>
+				<label 
+					htmlFor="country"
+				>
+					<select
+						id="country"
+						name="select"
+						value={defaultValue}
+						onChange={updateLocation}
+					>
+						{options}
+					</select>
+				</label>
+				<input 
+					type="submit"
+					value="submit"
+				/>
+			</form>
+		</div>
 	)
 };
 
