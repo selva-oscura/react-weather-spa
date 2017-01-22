@@ -7,7 +7,7 @@ import Settings from './Settings';
 import Splash from './Splash';
 import '../styles/Body.css';
 
-const Body = ({currPage, errors, response}) => {
+const Body = ({currPage, errors, response, settings, updateSetting}) => {
 	let page;
 	switch(currPage){
 		case "splash":
@@ -27,7 +27,10 @@ const Body = ({currPage, errors, response}) => {
 			break;
 		case "settings":
 			page = (
-				<Settings />
+				<Settings 
+					settings={settings}
+					updateSetting={updateSetting}
+				/>
 			);
 			break;
 		default:
