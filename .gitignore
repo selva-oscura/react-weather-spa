@@ -13,3 +13,6 @@ build
 .DS_Store
 .env
 npm-debug.log
+
+# notes and API stuff
+notes.txt
