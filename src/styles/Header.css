@@ -9,34 +9,3 @@
   margin:0px;
   padding:0px;
 }
-
-.Header div{
-	width: 60px;
-	text-align: center;
-	padding: 0 2vw;
-}
-.Header .favorites{
-	position: absolute;
-	top: 0;
-	right:60px;
-}
-
-.Header .settings{
-	position: absolute;
-	top: 0;
-	right:0;
-}
-
-.Header div:first-child{
-	position: absolute;
-	top:0;
-	left:0;
-	width: 100vw;
-	padding-right: 120px;
-}
-
-.Header p{
-	padding: 21px 0px;
-	margin:0px;
-	text-align: center;
-}
