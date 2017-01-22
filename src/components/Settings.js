@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Settings = () => (
+const Settings = ({settings, updateSetting}) => (
 	<div
 		className="Settings"
 	>
@@ -14,6 +14,8 @@ const Settings = () => (
 				type="radio"
 				name="tempFormat"
 				value="C"
+				checked={settings.tempFormat==="C"}
+				onChange={updateSetting}
 			/>
 			Celsius
 		</label>
@@ -25,6 +27,8 @@ const Settings = () => (
 				type="radio"
 				name="tempFormat"
 				value="F"
+				checked={settings.tempFormat==="F"}
+				onChange={updateSetting}
 			/>
 			Fahrenheit
 		</label>
