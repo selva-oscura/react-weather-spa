@@ -3,7 +3,7 @@ import Search from './Search';
 import NavLink from './NavLink';
 import '../styles/Header.css';
 
-const Header = ({defaultValue, submitLocation, updateLocation, handleNav}) => (
+const Header = ({defaultValue, currPage, submitLocation, updateLocation, handleNav}) => (
 	<header
 		className="Header"
 	>
@@ -14,10 +14,12 @@ const Header = ({defaultValue, submitLocation, updateLocation, handleNav}) => (
 		/>
 		<NavLink 
 			pageLink="favorites"
+			currPage={currPage}
 			handleNav={handleNav}
 		/>
 		<NavLink 
 			pageLink="settings"
+			currPage={currPage}
 			handleNav={handleNav}
 		/>
 	</header>
