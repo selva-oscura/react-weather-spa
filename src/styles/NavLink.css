@@ -1,0 +1,26 @@
+.NavLink{
+	width: 50px;
+	text-align: center;
+	padding: 0 12px;
+	position: absolute;
+	top: 0;
+}
+
+.NavLink p{
+	padding: 21px 0px;
+	margin:0px;
+	text-align: center;
+	color: #ffffff;
+}
+
+.NavLink.selected p{
+	color: #ffeb3b
+}
+
+.NavLink.settings{
+	right:0;
+}
+
+.NavLink.favorites{
+	right:50px;
+}
