@@ -62,6 +62,7 @@ const App = React.createClass({
       <div className="App">
         <Header 
         	handleNav={this.handleNav}
+        	currPage={this.state.currPage}
         	defaultValue={this.state.searchInput.country}
         	submitLocation={this.submitLocation}
         	updateLocation={this.updateLocation}
