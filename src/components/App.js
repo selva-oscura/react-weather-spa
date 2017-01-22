@@ -10,6 +10,7 @@ const App = React.createClass({
 			currLocation: {
 				city: "",
 				country: "",
+				id: "",
 			},
 			favedLocations: [],
 			searchInput: {
@@ -39,19 +40,21 @@ const App = React.createClass({
 	},
 	submitLocation(e){
 		e.preventDefault();
-		let {errors, response, searchInput} = this.state;
+		let {errors, currPage, response, searchInput, currLocation} = this.state;
 		if(searchInput.city.length>0){
-			response = `Checking weather conditions for ${searchInput.city}, ${searchInput.country}.`;
+			response="";
+			currLocation=searchInput;
+			currPage="detail";
 			errors = [];
 			this.queryWeatherAPI();
 		}else{
 			errors = ["Please enter a city (and state/province if needed)."];
 			response = "";
 		}
-		this.setState({response, errors});
+		this.setState({response, currPage, currLocation, errors});
 	},
 	queryWeatherAPI(){
-		let {city, country} = this.state.searchInput;
+		let {city, country} = this.state.currLocation;
 		console.log(`single location query for ${city}, ${country} to go here`);
 	},
 	queriesWeatherAPI(){
@@ -70,6 +73,7 @@ const App = React.createClass({
         <Body 
         	currPage={this.state.currPage}
         	errors={this.state.errors}
+        	currLocation={this.state.currLocation}
         	response={this.state.response}
         	settings={this.state.settings}
         	updateSetting={this.updateSetting}
