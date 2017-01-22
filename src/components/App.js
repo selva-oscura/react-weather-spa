@@ -16,12 +16,21 @@ const App = React.createClass({
 				city: "",
 				country: "US",
 			},
+			settings:{
+				tempFormat: "C",
+			},
 			errors: [],
 			response: ""
 		}
 	},
 	handleNav(e){
 		this.setState({currPage:e.target.id});
+	},
+	updateSetting(e){
+		console.log('e', e.target.id, e.target.value, e.target.name)
+		let settings=this.state.settings;
+		settings[e.target.name]=e.target.value;
+		this.setState({settings});
 	},
 	updateLocation(e){
 		let searchInput = this.state.searchInput;
@@ -61,6 +70,8 @@ const App = React.createClass({
         	currPage={this.state.currPage}
         	errors={this.state.errors}
         	response={this.state.response}
+        	settings={this.state.settings}
+        	updateSetting={this.updateSetting}
         />
       </div>
     );
