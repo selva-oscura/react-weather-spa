@@ -1,0 +1,91 @@
+.Search{
+	position: absolute;
+	top: 0;
+	left:0;
+	width: 100vw;
+	text-align: left;
+}
+
+
+/*.Search input{
+	display: inline-block;
+}
+*/
+.Search input, .Search textarea, .Search select{
+	-ms-box-sizing:content-box;
+	-moz-box-sizing:content-box;
+	-webkit-box-sizing:content-box; 
+	box-sizing:content-box;
+	border: 0px;
+	background-color: white;
+}
+
+@media screen and (max-width: 599px) {
+	.Search{
+		padding: 0 90px 0 8px;
+		display:relative;
+	}
+	.Search input[type="text"], .Search select{
+		height: 20px;
+		font-size: 12px;
+		width: 240px;
+		margin: 0px 4px;
+	}
+	.Search input[type="text"]{
+		padding: 2px 0px 2px 8px;
+	}
+	.Search input[type="text"]{
+		position: absolute;
+		left:6px;
+		top: 6px;
+		padding: 2px 4px 2px 4px;
+	}
+	.Search select{
+		position: absolute;
+		left:6px;
+		top: 38px;
+		padding: 2px 4px 2px 4px;
+	}
+	.Search input[type="submit"]{
+		position: absolute;
+		left:264px;
+		top: 6px;
+		padding:16px 12px;
+		font-size: 20px;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	.Search{
+		padding: 0 90px 0 16px;
+	}
+	.Search input, .Search select, .search option{
+		margin: 16px 0;
+		height: 30px;
+		padding: 4px 0px 4px 8px;
+		font-size: 15px;
+	}
+	.Search input[type="submit"]{
+		padding: 4px 8px;
+	}
+	.Search select{
+		width: 200px;
+		margin: 0px 16px;
+	}
+  body {
+      background-color: lightgreen;
+  }
+}
+
+@media screen and (min-width: 625px) {
+	.Search input[type="text"]{
+		width: 200px;
+	}
+}
+
+@media screen and (min-width: 675px) {
+	.Search input[type="text"], .Search select{
+		width: 40%;
+	}
+}
+
