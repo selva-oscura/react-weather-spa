@@ -32,20 +32,22 @@ const Setting = ({id, name, value, currSetting, updateSetting}) => {
 		className="selected"
 	}
 	return(
-		<label
-			htmlFor={id}
-			className={className}
-		>
-			<input 
-				id={id}
-				type="radio"
-				name={name}
-				value={value}
-				checked={value===currSetting}
-				onChange={updateSetting}
-			/>
-			{id.toUpperCase()}
-		</label>
+		<div className="Setting">
+			<label
+				htmlFor={id}
+				className={className}
+			>
+				<input 
+					id={id}
+					type="radio"
+					name={name}
+					value={value}
+					checked={value===currSetting}
+					onChange={updateSetting}
+				/>
+				{id.toUpperCase()}
+			</label>
+		</div>
 	)
 }
 
