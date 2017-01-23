@@ -14,7 +14,7 @@ const App = React.createClass({
 				country: "US",
 			},
 			settings:{
-				tempFormat: "C",
+				tempFormat: "metric",
 			},
 			errors: [],
 			response: ""
@@ -24,8 +24,6 @@ const App = React.createClass({
 		this.setState({currPage:e.target.id});
 	},
 	updateSetting(e){
-		console.log('e', e.target)
-		console.log('e', e.target.id, e.target.value, e.target.name)
 		let settings=this.state.settings;
 		settings[e.target.name]=e.target.value;
 		this.setState({settings});
