@@ -7,11 +7,7 @@ const App = React.createClass({
 	getInitialState(){
 		return {
 			currPage: "splash",
-			currLocation: {
-				city: "",
-				country: "",
-				id: "",
-			},
+			currLocation: {},
 			favedLocations: [],
 			searchInput: {
 				city: "",
@@ -28,6 +24,7 @@ const App = React.createClass({
 		this.setState({currPage:e.target.id});
 	},
 	updateSetting(e){
+		console.log('e', e.target)
 		console.log('e', e.target.id, e.target.value, e.target.name)
 		let settings=this.state.settings;
 		settings[e.target.name]=e.target.value;
@@ -40,22 +37,29 @@ const App = React.createClass({
 	},
 	submitLocation(e){
 		e.preventDefault();
-		let {errors, currPage, response, searchInput, currLocation} = this.state;
+		let {errors, currPage, searchInput} = this.state;
 		if(searchInput.city.length>0){
-			response="";
-			currLocation=searchInput;
+			let currLocation={};
+			currLocation = {
+				city: searchInput.city,
+				country: searchInput.country,
+			}
+			if(searchInput.id){
+				currLocation.id = searchInput.id;
+			}
 			currPage="detail";
 			errors = [];
+			this.setState({errors, currPage, currLocation});
 			this.queryWeatherAPI();
 		}else{
 			errors = ["Please enter a city (and state/province if needed)."];
-			response = "";
+			this.setState({errors});
 		}
-		this.setState({response, currPage, currLocation, errors});
 	},
 	queryWeatherAPI(){
-		let {city, country} = this.state.currLocation;
+		let {city, country, id} = this.state.currLocation;
 		console.log(`single location query for ${city}, ${country} to go here`);
+		console.log(id, "check");
 	},
 	queriesWeatherAPI(){
 		console.log('multi-location query to go here');
