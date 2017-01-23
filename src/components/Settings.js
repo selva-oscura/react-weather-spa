@@ -7,18 +7,18 @@ const Settings = ({settings, updateSetting}) => (
 		<h2>Settings</h2>
 		<h3>Temperature Format</h3>
 		<Setting 
-			key="tempFormatC"
+			key="tempFormatMetric"
 			id="celsius"
 			name="tempFormat"
-			value="C"
+			value="metric"
 			currSetting={settings.tempFormat}
 			updateSetting={updateSetting}
 		/>
 		<Setting 
-			key="tempFormatF"
+			key="tempFormatImperial"
 			id="fahrenheit"
 			name="tempFormat"
-			value="F"
+			value="imperial"
 			currSetting={settings.tempFormat}
 			updateSetting={updateSetting}
 		/>
