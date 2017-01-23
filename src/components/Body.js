@@ -19,6 +19,7 @@ const Body = ({currPage, currLocation, errors, response, settings, updateSetting
 			page = (
 				<Detail 
 					currLocation={currLocation}
+					settings={settings}
 				/>
 			);
 			break;
