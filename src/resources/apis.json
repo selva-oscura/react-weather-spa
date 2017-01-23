@@ -1,0 +1,6 @@
+{
+	"openWeather":{
+		"baseURL":"http://api.openweathermap.org/data/2.5/",
+		"apiKey": "super-secret-key"
+	}
+}
