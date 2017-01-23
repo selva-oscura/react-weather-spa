@@ -1,5 +1,6 @@
 import React from 'react';
 import icons from '../resources/icons.js';
+import '../styles/Detail.css';
 
 const Detail = ({currLocation, settings}) => {
 	let windDirection;
@@ -45,9 +46,17 @@ const Detail = ({currLocation, settings}) => {
 		<div
 			className="Detail"
 		>
-			<h2>Detail</h2>
-			<h2 className="summary"><img src={localAddress} alt={currLocation.apiResponse.weather[0].description}/> 
-			{currLocation.city[0].toUpperCase() + currLocation.city.slice(1).toLowerCase()}, {currLocation.country}</h2>
+			<div className="summary">
+				<div className="summary-image">
+					<img src={localAddress} alt={currLocation.apiResponse.weather[0].description}/> 
+				</div>
+				<div className="summary-text">
+					<h2>{currLocation.city[0].toUpperCase() + currLocation.city.slice(1).toLowerCase()}, {currLocation.country}</h2>
+				</div>
+				<div className="favorite-option">
+					<p><span className="glyphicon glyphicon-heart"></span></p>
+				</div>
+			</div>
 			<p>Current Conditions: {currLocation.apiResponse.weather[0].description}</p>
 			<p>
 				Temperature: {Math.round(currLocation.apiResponse.main.temp)}
