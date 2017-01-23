@@ -3,6 +3,8 @@ import axios from 'axios';
 import Header from './Header';
 import Body from './Body';
 import '../styles/App.css';
+import { openWeather } from '../resources/apis.json';
+console.log('openWeather', openWeather)
 
 const App = React.createClass({
 	getInitialState(){
