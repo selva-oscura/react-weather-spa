@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/Settings.css';
 
 const Settings = ({settings, updateSetting}) => (
 	<div

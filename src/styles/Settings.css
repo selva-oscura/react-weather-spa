@@ -1,0 +1,22 @@
+.Settings input[type="radio"]{
+	display: none;
+}
+.Settings label{
+	display: inline-block;
+	font-size: 1.17em;
+	height: 56px;
+	width: 150px;
+	padding: 16px 0px;
+	margin-right: 24px;
+	text-align: center;
+	box-shadow: 0px 0px 4px silver;
+	transition: all .5s;
+}
+
+.Settings label:hover{
+	box-shadow: 0px 0px 8px grey;	
+}
+
+.Settings label.selected{
+	background-color: rgba(0,188, 212, .5);
+}
