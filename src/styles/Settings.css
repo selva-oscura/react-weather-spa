@@ -1,22 +1,26 @@
 .Settings input[type="radio"]{
 	display: none;
 }
+.Settings .Setting {
+	display: inline-block;
+	background-color: #ffffff;
+	margin-right: 24px;
+}
 .Settings label{
 	display: inline-block;
 	font-size: 1.17em;
 	height: 56px;
 	width: 150px;
 	padding: 16px 0px;
-	margin-right: 24px;
 	text-align: center;
-	box-shadow: 0px 0px 4px silver;
+	box-shadow: 0px 0px 4px rgba(1, 87, 155, .25);
 	transition: all .5s;
 }
 
 .Settings label:hover{
-	box-shadow: 0px 0px 8px grey;	
+	box-shadow: 0px 0px 8px rgba(1, 87, 155, .5);	
 }
 
 .Settings label.selected{
-	background-color: rgba(0,188, 212, .5);
+	background-color: rgba(41,182, 246, .5);
 }
