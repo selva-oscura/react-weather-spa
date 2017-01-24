@@ -7,7 +7,7 @@ import Settings from './Settings';
 import Splash from './Splash';
 import '../styles/Body.css';
 
-const Body = ({currPage, currLocation, errors, response, settings, updateSetting}) => {
+const Body = ({currPage, currLocation, errors, response, settings, updateSetting, addToFavorites, favedLocations}) => {
 	let page;
 	switch(currPage){
 		case "splash":
@@ -20,6 +20,8 @@ const Body = ({currPage, currLocation, errors, response, settings, updateSetting
 				<Detail 
 					currLocation={currLocation}
 					settings={settings}
+					addToFavorites={addToFavorites}
+					favedLocations={favedLocations}
 				/>
 			);
 			break;
