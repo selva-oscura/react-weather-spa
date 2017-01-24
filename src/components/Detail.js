@@ -79,11 +79,15 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 				{settings.tempFormat==="metric" ? "mm" : "in" }
 			</p>
 			<p>
+				Snow (last 3 hours): { currLocation.apiResponse.snow ? currLocation.apiResponse.snow["3h"] : 0}
+				{settings.tempFormat==="metric" ? "cm" : "in" }
+			</p>
+			<p>
 				Humidity: {currLocation.apiResponse.main.humidity}%
 			</p>
 			<p>Cloud cover: {currLocation.apiResponse.clouds.all}%</p>
 			<p>
-				Wind speed: {currLocation.apiResponse.wind.speed} {settings.tempFormat==="metric" ? " km/hour " : " miles/hour " }<br />
+				Wind speed: {currLocation.apiResponse.wind.speed} {settings.tempFormat==="metric" ? " m/sec " : " miles/hour " }<br />
 				Wind direction: {windDirection}
 			</p>
 		</div>
