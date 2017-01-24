@@ -2,6 +2,7 @@ import React from 'react';
 import Detail from './Detail';
 import Errors from './Errors';
 import Favorites from './Favorites';
+import Loading from './Loading';
 import Response from './Response';
 import Settings from './Settings';
 import Splash from './Splash';
@@ -22,6 +23,13 @@ const Body = ({currPage, currLocation, errors, response, settings, updateSetting
 					settings={settings}
 					addToFavorites={addToFavorites}
 					favedLocations={favedLocations}
+				/>
+			);
+			break;
+		case "loading":
+			page = (
+				<Loading 
+					currLocation={currLocation}
 				/>
 			);
 			break;
