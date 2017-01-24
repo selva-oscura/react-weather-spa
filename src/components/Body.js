@@ -1,4 +1,5 @@
 import React from 'react';
+import Blank from './Blank';
 import Detail from './Detail';
 import Errors from './Errors';
 import Favorites from './Favorites';
@@ -46,6 +47,11 @@ const Body = ({currPage, currLocation, errors, response, settings, updateSetting
 					settings={settings}
 					updateSetting={updateSetting}
 				/>
+			);
+			break;
+		case "blank":
+			page = (
+				<Blank />
 			);
 			break;
 		default:
