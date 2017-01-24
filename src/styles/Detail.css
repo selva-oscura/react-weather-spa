@@ -27,14 +27,17 @@
 .Detail .favorite-option p{
 	font-size: 30px;
 	margin-top:8px;
-	text-shadow: 0px 0px 2px #01579b;
 	color:#ffffff;
+	text-shadow: 0px 0px 2px #01579b;
 	transition: all .5s;
 }
 
 .Detail .favorite-option p:hover{
-	font-size: 30px;
-	margin-top:8px;
 	text-shadow: 0px 0px 2px rgba(255,128,171,1);
 	color: rgba(255,128,171,.25);
+}
+
+.Detail .favorite-option p.favorited{
+	text-shadow: 0px 0px 2px rgba(255,128,171,1);
+	color: rgba(255,128,171,.25);	
 }
