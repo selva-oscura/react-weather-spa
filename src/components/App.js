@@ -53,8 +53,8 @@ const App = React.createClass({
 						"3h":0.565
 					},
 					"dt":1485134447,
-					"id":0,
-					"name":"Washington",
+					"id":4140963,
+					"name":"Washington, D. C.",
 					"cod":200
 				}
 			},
@@ -118,6 +118,38 @@ const App = React.createClass({
 		});
 		return response.join("");
 	},
+	addToFavorites(){
+		let apiResponse = this.state.currLocation.apiResponse;
+		let {favedLocations, errors} = this.state;
+		console.log('apiResponse', apiResponse, "favedLocations", favedLocations, "errors", errors)
+		let toBeFaved;
+		if(apiResponse.id && apiResponse.name && apiResponse.coord.lon && apiResponse.coord.lat){
+			toBeFaved = {
+				id: apiResponse.id,
+				name: apiResponse.name,
+				coord: {
+					lon: apiResponse.coord.lon,
+					lat: apiResponse.coord.lat,
+				}
+			}
+		}else{
+			this.setState({errors:[`Unable to access openWeather data, id:${apiResponse.id}, name: ${apiResponse.name}, coord lon (${apiResponse.coord.lon}), lat(${apiResponse.coord.lat})`]});
+			return;
+		}
+		let duplicate = false;
+		if(favedLocations.length>0){
+			favedLocations.forEach((fave) => {
+				if(fave.id===toBeFaved.id){
+					duplicate = true;
+				}
+			});
+		}
+		if(!duplicate){
+			this.setState({favedLocations: favedLocations.concat(toBeFaved), errors: []});
+		}else{
+			this.setState({errors:[`${apiResponse.name} (id: ${apiResponse.id}) already in list of favourites.`]});
+		}
+	},
 	queryWeatherAPI(currLocation){
 		let {city, country, id} = currLocation;
 		let tempFormat = this.state.settings.tempFormat;
@@ -150,6 +182,8 @@ const App = React.createClass({
         	response={this.state.response}
         	settings={this.state.settings}
         	updateSetting={this.updateSetting}
+        	addToFavorites={this.addToFavorites}
+        	favedLocations={this.state.favedLocations}
         />
       </div>
     );
