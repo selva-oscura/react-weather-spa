@@ -27,7 +27,9 @@ const Body = ({currPage, currLocation, errors, response, settings, updateSetting
 			break;
 		case "favorites":
 			page = (
-				<Favorites />
+				<Favorites 
+					favedLocations={favedLocations}
+				/>
 			);
 			break;
 		case "settings":
