@@ -48,16 +48,22 @@ const App = React.createClass({
 			searchInput.id ? currLocation.id = searchInput.id : currLocation.id=null;
 			currPage="loading";
 			this.setState({errors, currLocation, currPage});
-			apiCalls.singleQueryWeatherAPI(this.purgeOfSpacesAndCommas(currLocation.city), currLocation.country, currLocation.id, settings.tempFormat).then((apiResponse) => {
+			apiCalls.singleQueryWeatherAPI(this.purgeOfSpacesAndCommas(currLocation.city), currLocation.country, currLocation.id, settings.tempFormat)
+			.then((apiResponse, error) => {
 				console.log('apiResponse', apiResponse);
 				currLocation.apiResponse = apiResponse.data;
 				currLocation.status=apiResponse.status;
 				if(apiResponse.status===200){ 
 					currPage="detail"; 
+					errors=[];
 				}else{
-					errors=["Error:", apiResponse.status, apiResponse.statusText];
+					errors=["Error?", apiResponse.status,  apiResponse.statusText];
 				}
 				this.setState({currLocation, errors, currPage});
+			}).catch((error) => {
+				errors = [`Error: ${error.response.status} ${error.response.statusText}`];
+				currPage = "blank"
+				this.setState({errors, currPage});
 			});
 		}else{
 			errors = ["Please enter a city (and state/province if needed)."];
