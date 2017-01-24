@@ -50,7 +50,6 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 			}
 		});
 	}
-	console.log('currLocation.apiResponse', currLocation.apiResponse)
 	return (
 		<div
 			className="Detail"
@@ -77,17 +76,15 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 				{settings.tempFormat==="metric" ? "C" : "F"}
 			</p>
 			<p>
-				Precipitation (last 3 hours): {currLocation.apiResponse.rain["3h"]}
+				Precipitation (last 3 hours): { currLocation.apiResponse.rain ? currLocation.apiResponse.rain["3h"] : 0}
 				{settings.tempFormat==="metric" ? "mm" : "in" }
 			</p>
 			<p>
 				Humidity: {currLocation.apiResponse.main.humidity}
 			</p>
 			<p>
-				Wind speed: {currLocation.apiResponse.wind.speed}<br />
-				Wind direction: 
-				{settings.tempFormat==="metric" ? " km/hour " : " miles/hour " }
-				{windDirection}
+				Wind speed: {currLocation.apiResponse.wind.speed} {settings.tempFormat==="metric" ? " km/hour " : " miles/hour " }<br />
+				Wind direction: {windDirection}
 			</p>
 		</div>
 	)
