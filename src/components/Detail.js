@@ -3,6 +3,15 @@ import icons from '../resources/icons.js';
 import '../styles/Detail.css';
 
 const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
+	let localAddress=icons[`icon${currLocation.apiResponse.weather[0].icon}`];
+	let alreadyFaved;
+	if(favedLocations.length>0){
+		favedLocations.forEach((fave) => {
+			if(fave.id===currLocation.apiResponse.id){
+				alreadyFaved = "favorited";
+			}
+		});
+	}
 	let windDirection;
 	let deg = currLocation.apiResponse.wind.deg;
 	if(deg>348.75 || deg<11.25){
@@ -40,16 +49,6 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 	}else{
 		windDirection="oops.... a mistake with "+deg+" degrees";
 	}
-	let loc = `icon${currLocation.apiResponse.weather[0].icon}`;
-	let localAddress=icons[loc];
-	let alreadyFaved;
-	if(favedLocations.length>0){
-		favedLocations.forEach((fave) => {
-			if(fave.id===currLocation.apiResponse.id){
-				alreadyFaved = "favorited";
-			}
-		});
-	}
 	return (
 		<div
 			className="Detail"
@@ -80,8 +79,9 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 				{settings.tempFormat==="metric" ? "mm" : "in" }
 			</p>
 			<p>
-				Humidity: {currLocation.apiResponse.main.humidity}
+				Humidity: {currLocation.apiResponse.main.humidity}%
 			</p>
+			<p>Cloud cover: {currLocation.apiResponse.clouds.all}%</p>
 			<p>
 				Wind speed: {currLocation.apiResponse.wind.speed} {settings.tempFormat==="metric" ? " km/hour " : " miles/hour " }<br />
 				Wind direction: {windDirection}
