@@ -1,65 +1,15 @@
 import React from 'react';
 import Header from './Header';
 import Body from './Body';
-import '../styles/App.css';
 import { openWeather } from '../resources/apis.json';
 import apiCalls from  '../resources/apiCalls.js';
-
-
-console.log('openWeather', openWeather)
+import '../styles/App.css';
 
 const App = React.createClass({
 	getInitialState(){
 		return {
-			currPage: "detail",
-			currLocation: {
-				city: "Washington, DC",
-				country: "US",
-				apiResponse: {
-					"coord":{
-						"lon":-77.03,
-						"lat":38.89
-					},
-					"sys":{
-						"message":0.1888,
-						"country":"United States",
-						"sunrise":1485174027,
-						"sunset":1485209995
-					},
-					"weather":[
-						{
-							"id":500,
-							"main":"Rain",
-							"description":"light rain",
-							"icon":"10n"
-						}
-					],
-					"base":"stations",
-					"main":{
-						"temp":9.927,
-						"temp_min":9.927,
-						"temp_max":9.927,
-						"pressure":1010.12,
-						"sea_level":1016.62,
-						"grnd_level":1010.12,
-						"humidity":92
-					},
-					"wind":{
-						"speed":2.97,
-						"deg":40.5034
-					},
-					"clouds":{
-						"all":92
-					},
-					"rain":{
-						"3h":0.565
-					},
-					"dt":1485134447,
-					"id":4140963,
-					"name":"Washington, D. C.",
-					"cod":200
-				}
-			},
+			currPage: "splash",
+			currLocation: {},
 			favedLocations: [],
 			searchInput: {
 				city: "",
