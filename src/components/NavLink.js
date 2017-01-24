@@ -4,9 +4,9 @@ import '../styles/NavLink.css';
 const NavLink = ({pageLink, currPage, handleNav}) => {
 	let icon;
 	if(pageLink==="favorites"){
-		icon="glyphicon glyphicon-heart";
+		icon="fa fa-heart";
 	}else if(pageLink==="settings"){
-		icon="glyphicon glyphicon-cog";
+		icon="fa fa-cog";
 	}
 	let navLink = `NavLink ${pageLink}`;
 	if(currPage===pageLink){
@@ -19,10 +19,10 @@ const NavLink = ({pageLink, currPage, handleNav}) => {
 			>
 				<p
 				>
-					<span 
+					<i 
 						className={icon}
 						id={pageLink}
-					></span>
+					></i>
 				</p>
 			</div>
 	)
