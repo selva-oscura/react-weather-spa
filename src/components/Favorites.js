@@ -5,7 +5,7 @@ const Favorites = ({favedLocations}) => (
 		className="Favorites"
 	>
 		<h2>Favorites</h2>
-		{favedLocations.map((fave)=>(<Favorite favedLocation={fave} />))}
+		{favedLocations.map((fave)=>(<Favorite key={fave.id} favedLocation={fave} />))}
 	</div>
 );
 
