@@ -1,9 +1,11 @@
 import React from 'react';
-import axios from 'axios';
 import Header from './Header';
 import Body from './Body';
 import '../styles/App.css';
 import { openWeather } from '../resources/apis.json';
+import apiCalls from  '../resources/apiCalls.js';
+
+
 console.log('openWeather', openWeather)
 
 const App = React.createClass({
@@ -85,7 +87,7 @@ const App = React.createClass({
 	},
 	submitLocation(e){
 		e.preventDefault();
-		let {errors, currPage, searchInput} = this.state;
+		let {errors, currPage, searchInput, settings} = this.state;
 		if(searchInput.city.length>0){
 			errors = [];
 			let currLocation={};
@@ -94,9 +96,19 @@ const App = React.createClass({
 				country: searchInput.country,
 			}
 			searchInput.id ? currLocation.id = searchInput.id : currLocation.id=null;
-			currPage="detail";
+			currPage="loading";
 			this.setState({errors, currLocation, currPage});
-			this.queryWeatherAPI(currLocation);
+			apiCalls.singleQueryWeatherAPI(this.purgeOfSpacesAndCommas(currLocation.city), currLocation.country, currLocation.id, settings.tempFormat).then((apiResponse) => {
+				console.log('apiResponse', apiResponse);
+				currLocation.apiResponse = apiResponse.data;
+				currLocation.status=apiResponse.status;
+				if(apiResponse.status===200){ 
+					currPage="detail"; 
+				}else{
+					errors=["Error:", apiResponse.status, apiResponse.statusText];
+				}
+				this.setState({currLocation, errors, currPage});
+			});
 		}else{
 			errors = ["Please enter a city (and state/province if needed)."];
 			this.setState({errors});
@@ -149,21 +161,6 @@ const App = React.createClass({
 		}else{
 			this.setState({errors:[`${apiResponse.name} (id: ${apiResponse.id}) already in list of favourites.`]});
 		}
-	},
-	queryWeatherAPI(currLocation){
-		let {city, country, id} = currLocation;
-		let tempFormat = this.state.settings.tempFormat;
-		let apiCall=`${openWeather.baseURL}weather/`;
-		if(id){
-			apiCall += `city?id=${id}`;
-		}else{
-			apiCall += `?q=${this.purgeOfSpacesAndCommas(city)},${country}`
-		}
-		apiCall += `&appid=${openWeather.apiKey}&units=${tempFormat}`;
-		console.log('apiCall', apiCall);
-	},
-	queriesWeatherAPI(){
-		console.log('multi-location query to go here');
 	},
   render() {
     return (
