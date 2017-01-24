@@ -65,7 +65,7 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 						className={alreadyFaved}
 						onClick={addToFavorites}
 					>
-						<span className="glyphicon glyphicon-heart"></span>
+						<i className="fa fa-heart"></i>
 					</p>
 				</div>
 			</div>
