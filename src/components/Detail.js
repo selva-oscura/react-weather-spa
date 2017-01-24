@@ -2,7 +2,7 @@ import React from 'react';
 import icons from '../resources/icons.js';
 import '../styles/Detail.css';
 
-const Detail = ({currLocation, settings}) => {
+const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 	let windDirection;
 	let deg = currLocation.apiResponse.wind.deg;
 	if(deg>348.75 || deg<11.25){
@@ -41,7 +41,16 @@ const Detail = ({currLocation, settings}) => {
 		windDirection="oops.... a mistake with "+deg+" degrees";
 	}
 	let loc = `icon${currLocation.apiResponse.weather[0].icon}`;
-	let localAddress =icons[loc];
+	let localAddress=icons[loc];
+	let alreadyFaved;
+	if(favedLocations.length>0){
+		favedLocations.forEach((fave) => {
+			if(fave.id===currLocation.apiResponse.id){
+				alreadyFaved = "favorited";
+			}
+		});
+	}
+	console.log('currLocation.apiResponse', currLocation.apiResponse)
 	return (
 		<div
 			className="Detail"
@@ -51,10 +60,15 @@ const Detail = ({currLocation, settings}) => {
 					<img src={localAddress} alt={currLocation.apiResponse.weather[0].description}/> 
 				</div>
 				<div className="summary-text">
-					<h2>{currLocation.city[0].toUpperCase() + currLocation.city.slice(1).toLowerCase()}, {currLocation.country}</h2>
+					<h2>{currLocation.apiResponse.name}</h2>
 				</div>
 				<div className="favorite-option">
-					<p><span className="glyphicon glyphicon-heart"></span></p>
+					<p
+						className={alreadyFaved}
+						onClick={addToFavorites}
+					>
+						<span className="glyphicon glyphicon-heart"></span>
+					</p>
 				</div>
 			</div>
 			<p>Current Conditions: {currLocation.apiResponse.weather[0].description}</p>
