@@ -1,10 +1,11 @@
 import React from 'react';
 
+
 const Loading = ({currLocation}) => (
 	<div 
 		className="Loading"
 	>
-		<p>Loading data for {currLocation.city}, {currLocation.country}</p>
+		<p><i className="fa fa-spinner fa-spin"></i> Loading data for {currLocation.city}, {currLocation.country}</p>
 	</div>
 );
 
