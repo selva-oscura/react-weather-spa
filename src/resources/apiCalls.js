@@ -2,8 +2,8 @@ import axios from 'axios';
 import { openWeather } from './apis.json';
 
 const weatherQueries = {
-	singleQueryWeatherAPI: function(city, country, id, tempFormat){
-		let apiCall=`${openWeather.baseURL}weather`;
+	singleForecastWeatherAPI: function(city, country, id, tempFormat){
+		let apiCall =`${openWeather.baseURL}forecast`;
 		if(id){
 			apiCall += `city?id=${id}`;
 		}else{
