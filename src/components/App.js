@@ -10,7 +10,7 @@ const App = React.createClass({
 		return {
 			currPage: "splash",
 			currLocation: {},
-			favedLocations: [],
+			favedLocations: {},
 			searchInput: {
 				city: "",
 				country: "US",
@@ -40,18 +40,19 @@ const App = React.createClass({
 		let {errors, currPage, searchInput, settings} = this.state;
 		if(searchInput.city.length>0){
 			errors = [];
-			let currLocation={};
-			currLocation = {
+			let currLocation = {
 				city: searchInput.city,
 				country: searchInput.country,
 			}
 			searchInput.id ? currLocation.id = searchInput.id : currLocation.id=null;
 			currPage="loading";
 			this.setState({errors, currLocation, currPage});
-			apiCalls.singleQueryWeatherAPI(this.purgeOfSpacesAndCommas(currLocation.city), currLocation.country, currLocation.id, settings.tempFormat)
+			apiCalls.singleForecastWeatherAPI(this.purgeOfSpacesAndCommas(currLocation.city), currLocation.country, currLocation.id, settings.tempFormat)
 			.then((apiResponse, error) => {
 				console.log('apiResponse', apiResponse);
-				currLocation.apiResponse = apiResponse.data;
+				currLocation.id = apiResponse.data.city.id;
+				currLocation.coord = apiResponse.data.city.coord;
+				currLocation.data = [].concat(apiResponse.data.list)
 				currLocation.status=apiResponse.status;
 				if(apiResponse.status===200){ 
 					currPage="detail"; 
@@ -61,6 +62,7 @@ const App = React.createClass({
 				}
 				this.setState({currLocation, errors, currPage});
 			}).catch((error) => {
+				console.log('error in catch for submitLocation', error);
 				errors = [`Error: ${error.response.status} ${error.response.statusText}`];
 				currPage = "blank"
 				this.setState({errors, currPage});
@@ -89,11 +91,10 @@ const App = React.createClass({
 	addToFavorites(){
 		let apiResponse = this.state.currLocation.apiResponse;
 		let {favedLocations, errors} = this.state;
-		console.log('apiResponse', apiResponse, "favedLocations", favedLocations, "errors", errors)
+		console.log('apiResponse', apiResponse, "favedLocations", favedLocations, "errors", errors);
 		let toBeFaved;
 		if(apiResponse.id && apiResponse.name && apiResponse.coord.lon && apiResponse.coord.lat){
-			toBeFaved = {
-				id: apiResponse.id,
+			favedLocations[apiResponse.id] = {
 				name: apiResponse.name,
 				coord: {
 					lon: apiResponse.coord.lon,
@@ -104,19 +105,7 @@ const App = React.createClass({
 			this.setState({errors:[`Unable to access openWeather data, id:${apiResponse.id}, name: ${apiResponse.name}, coord lon (${apiResponse.coord.lon}), lat(${apiResponse.coord.lat})`]});
 			return;
 		}
-		let duplicate = false;
-		if(favedLocations.length>0){
-			favedLocations.forEach((fave) => {
-				if(fave.id===toBeFaved.id){
-					duplicate = true;
-				}
-			});
-		}
-		if(!duplicate){
-			this.setState({favedLocations: favedLocations.concat(toBeFaved), errors: []});
-		}else{
-			this.setState({errors:[`${apiResponse.name} (id: ${apiResponse.id}) already in list of favourites.`]});
-		}
+		this.setState({favedLocations: favedLocations, errors: []});
 	},
   render() {
     return (
