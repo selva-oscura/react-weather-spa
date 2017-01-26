@@ -20,6 +20,41 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 					</p>
 				</div>
 			</div>
+			<div className="time-series">
+				<div className="caption">
+					<div className="text">
+						Temp<br />
+						(&deg;{ settings.tempFormat==="metric" ? "C" : "F" })
+					</div>
+					<div className="temp-barchart">temp bar chart</div>
+					<div className="text">
+						Day<br />
+						Time
+					</div>
+					<div className="text">&nbsp;</div>
+					<div className="text">
+						Rain<br />
+						(in { settings.tempFormat==="metric" ? "mm" : "in" })
+					</div>
+					<div className="text">
+						Snow<br />
+						(in { settings.tempFormat==="metric" ? "cm" : "in" })
+					</div>
+					<div className="text">
+						Humidity<br />
+						(in %)
+					</div>
+					<div className="text">
+						Cloud Cover<br />
+						(in %)
+					</div>
+					<div className="text">
+						Wind Speed<br />
+						(in { settings.tempFormat==="metric" ? " m/sec " : " miles/hour " })
+					</div>
+					<div className="text">Wind Direction</div>
+				</div>
+			</div>
 			{currLocation.data.map((snapshot, i) => <Snapshot key={i} snapshot={snapshot} tempFormat={settings.tempFormat}/>)}
 		</div>
 	)	
