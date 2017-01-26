@@ -1,21 +1,17 @@
 .Detail{
-	width: 350px;
+/*	width: 350px;
 	height: 400px;
-	margin: 0 auto;
+	margin: 0 auto;*/
 }
 .Detail .summary div{
 	display: inline-block;
 	vertical-align: top;
 }
 
-.Detail .summary-image{
-	width:50px;
-}
-
-.Detail .summary-text{
+/*.Detail .summary-text{
 	width: 250px;
 }
-
+*/
 .Detail .summary-text h2{
 	margin-top:12px;
 }
@@ -40,4 +36,23 @@
 .Detail .favorite-option p.favorited{
 	text-shadow: 0px 0px 2px rgba(255,128,171,1);
 	color: rgba(255,128,171,.25);	
+}
+
+.Detail .time-series{
+	width: 85%;
+	margin: 0 auto;
+}
+
+.Detail .time-series .caption{
+	font-size: 8px;
+	width: 8%;
+	float:left;
+}
+
+.Detail .time-series .caption .temp-barchart{
+	min-height: 120px;
+}
+
+.Detail .time-series .caption .text{
+	min-height: 24px;
 }
