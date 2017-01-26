@@ -4,6 +4,30 @@ import icons from '../resources/icons.js';
 
 const Snapshot = ({ snapshot, tempFormat }) => {
 	const localAddress = (iconCode) => ( icons[`icon${iconCode}`] );
+	// const displayDay = (timestamp) => ()
+	const dayOfWeek = (timestamp) => {
+		let dayNum = new Date(snapshot.dt*1000).getDay();
+		if(dayNum===0){
+			return "Sun";
+		}
+		if(dayNum===1){
+			return "Mon";
+		}
+		if(dayNum===2){
+			return "Tues";
+		}
+		if(dayNum===3){
+			return "Wed";
+		}
+		if(dayNum===4){
+			return "Thurs";
+		}
+		if(dayNum===5){
+			return "Fri";	
+		}
+		return "Sat";
+	}
+
 	const windDirection = (deg) => {
 		if(deg>348.75 || deg<11.25){
 			return "N";
@@ -51,23 +75,23 @@ const Snapshot = ({ snapshot, tempFormat }) => {
 			<div className="temp-barchart">temp bar chart</div>
 			<div className="text">
 				{ new Date(snapshot.dt*1000).getHours() }<br />
-				{ new Date(snapshot.dt*1000).getDay() }
+				{ new Date(snapshot.dt*1000).getHours()>11 && new Date(snapshot.dt*1000).getHours()<15 ? dayOfWeek(snapshot.dt) : null }
 			</div>
 			<div className="text">
 				<img src={localAddress(snapshot.weather[0].icon)} alt={snapshot.weather[0].description}/>  
 			</div>
 			<div className="text">
-				{ snapshot.rain ? snapshot.rain["3h"] : 0}
+				{ snapshot.rain && Object.keys(snapshot.rain).indexOf("3h")>=0 ? Math.round(snapshot.rain["3h"]) : 0}
 			</div>
 			<div className="text">
-				{ snapshot.snow ? snapshot.snow["3h"] : 0}
+				{ snapshot.snow && Object.keys(snapshot.snow).indexOf("3h")>=0 ? Math.round(snapshot.snow["3h"]) : 0}
 			</div>
 			<div className="text">
 				{ snapshot.main.humidity }
 			</div>
 			<div className="text">{ snapshot.clouds.all}</div>
 			<div className="text">
-				{ snapshot.wind.speed}
+				{ Math.round(snapshot.wind.speed) }
 			</div>
 			<div className="text">
 				{ windDirection(snapshot.wind.deg) }
