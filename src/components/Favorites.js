@@ -5,12 +5,12 @@ const Favorites = ({favedLocations}) => (
 		className="Favorites"
 	>
 		<h2>Favorites</h2>
-		{favedLocations.map((fave)=>(<Favorite key={fave.id} favedLocation={fave} />))}
+		{Object.keys(favedLocations).map((key)=>(<Favorite key={key} locationId={key} favedLocation={favedLocations[key]} />))}
 	</div>
 );
 
-const Favorite = ({favedLocation}) => (
-	<p>{favedLocation.name} ({favedLocation.id}) -- lon: {favedLocation.coord.lon}, lat: {favedLocation.coord.lat}
+const Favorite = ({locationId, favedLocation}) => (
+	<p>{favedLocation.name} ({locationId}) -- lon: {favedLocation.coord.lon}, lat: {favedLocation.coord.lat}
 	</p>
 );
 
