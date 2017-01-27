@@ -49,10 +49,14 @@
 	float:left;
 }
 
-.Detail .time-series .caption .temp-barchart{
+.Detail .time-series .caption .temp-barchart-holder{
 	min-height: 120px;
 }
 
 .Detail .time-series .caption .text{
 	min-height: 24px;
+}
+
+.Detail .time-series p{
+	margin: 0;
 }
