@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from './Header';
 import Body from './Body';
-import { openWeather } from '../resources/apis.json';
 import apiCalls from  '../resources/apiCalls.js';
 import '../styles/App.css';
 
@@ -92,7 +91,6 @@ const App = React.createClass({
 		let apiResponse = this.state.currLocation.apiResponse;
 		let {favedLocations, errors} = this.state;
 		console.log('apiResponse', apiResponse, "favedLocations", favedLocations, "errors", errors);
-		let toBeFaved;
 		if(apiResponse.id && apiResponse.name && apiResponse.coord.lon && apiResponse.coord.lat){
 			favedLocations[apiResponse.id] = {
 				name: apiResponse.name,
