@@ -4,6 +4,19 @@ import '../styles/Detail.css';
 
 const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 	const alreadyFaved = favedLocations[currLocation.id] ? "favorited" : null;
+
+	// create temperature range for week
+	let tempRange = {
+		min: Infinity, 
+		max: -Infinity
+	};
+	currLocation.data.forEach((snapshot) => {
+		tempRange.min = Math.min(tempRange.min, snapshot.main.temp);
+		tempRange.max = Math.max(tempRange.max, snapshot.main.temp);
+	});
+	tempRange.min = Math.floor(tempRange.min/5)*5;
+	tempRange.max = Math.ceil(tempRange.max/5)*5;
+
 	console.log("currLocation", currLocation, "\nsettings", settings, "\navedLocations", favedLocations);
 	return (
 		<div className="Detail">
@@ -22,40 +35,58 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 			</div>
 			<div className="time-series">
 				<div className="caption">
+					<div className="temp-barchart-holder"></div>
 					<div className="text">
-						Temp<br />
-						(&deg;{ settings.tempFormat==="metric" ? "C" : "F" })
+						<p>						
+							Temp<br />
+							(&deg;{ settings.tempFormat==="metric" ? "C" : "F" })
+						</p>
 					</div>
-					<div className="temp-barchart">temp bar chart</div>
 					<div className="text">
-						Day<br />
-						Time
+						<p>
+							Day<br />
+							Time
+						</p>
 					</div>
 					<div className="text">&nbsp;</div>
 					<div className="text">
-						Rain<br />
-						({ settings.tempFormat==="metric" ? "mm" : "in" })
+						<p>					
+							Rain<br />
+							({ settings.tempFormat==="metric" ? "mm" : "in" })
+						</p>
 					</div>
 					<div className="text">
-						Snow<br />
-						({ settings.tempFormat==="metric" ? "cm" : "in" })
+						<p>
+							Snow<br />
+							({ settings.tempFormat==="metric" ? "cm" : "in" })
+					</p>
 					</div>
 					<div className="text">
-						Humidity<br />
-						(%)
+						<p>
+							Humidity<br />
+							(%)
+						</p>
 					</div>
 					<div className="text">
-						Cloud Cover<br />
-						(%)
+						<p>
+							Cloud Cover<br />
+							(%)
+						</p>
 					</div>
 					<div className="text">
-						Wind Speed<br />
-						(in { settings.tempFormat==="metric" ? " m/sec " : " miles/hour " })
+						<p>
+							Wind Speed<br />
+							({ settings.tempFormat==="metric" ? " m/sec " : " miles/hour " })
+						</p>
 					</div>
-					<div className="text">Wind Direction</div>
+					<div className="text">
+						<p>
+							Wind Direction
+						</p>
+					</div>
 				</div>
 			</div>
-			{currLocation.data.map((snapshot, i) => <Snapshot key={i} snapshot={snapshot} tempFormat={settings.tempFormat}/>)}
+			{currLocation.data.map((snapshot, i) => <Snapshot key={i} snapshot={snapshot} tempFormat={settings.tempFormat} tempRange={tempRange} />)}
 		</div>
 	)	
 
