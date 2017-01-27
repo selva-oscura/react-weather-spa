@@ -5,11 +5,23 @@ import icons from '../resources/icons.js';
 const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 	// path to url for icon
 	const localAddress = (iconCode) => ( icons[`icon${iconCode}`] );
-
 	// formatting for temperature bar style
+	let temp = snapshot.main.temp;
+	if(tempFormat==="imperial"){
+		temp = (temp-32)/1.8;
+	}
+	let color;
+	if(temp<-30){
+		color = 330;
+	}else if(temp>50){
+		color=345;
+	}else{
+		color = (Math.floor(temp * -4.3125 + 560))%360;
+	}
+	console.log("temp", temp, 'color', color)
 	let barStyle = {
-		height: (Math.round(snapshot.main.temp)-tempRange.min)*120/(tempRange.max-tempRange.min),
-		backgroundColor: 'silver',
+		height: (Math.round(snapshot.main.temp)-tempRange.min)*60/(tempRange.max-tempRange.min),
+		backgroundColor: `hsla(${color}, 100%, 40%, .8)`,
 		verticalAlign: 'bottom',
 	}
 
