@@ -8,10 +8,6 @@
 	vertical-align: top;
 }
 
-/*.Detail .summary-text{
-	width: 250px;
-}
-*/
 .Detail .summary-text h2{
 	margin-top:12px;
 }
@@ -50,7 +46,7 @@
 }
 
 .Detail .time-series .caption .temp-barchart-holder{
-	min-height: 120px;
+	min-height: 60px;
 }
 
 .Detail .time-series .caption .text{
