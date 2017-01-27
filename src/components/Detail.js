@@ -50,7 +50,7 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 					</div>
 					<div className="text">&nbsp;</div>
 					<div className="text">
-						<p>					
+						<p>
 							Rain<br />
 							({ settings.tempFormat==="metric" ? "mm" : "in" })
 						</p>
