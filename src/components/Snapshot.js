@@ -2,9 +2,18 @@ import React from 'react';
 import '../styles/Snapshot.css';
 import icons from '../resources/icons.js';
 
-const Snapshot = ({ snapshot, tempFormat }) => {
+const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
+	// path to url for icon
 	const localAddress = (iconCode) => ( icons[`icon${iconCode}`] );
-	// const displayDay = (timestamp) => ()
+
+	// formatting for temperature bar style
+	let barStyle = {
+		height: (Math.round(snapshot.main.temp)-tempRange.min)*120/(tempRange.max-tempRange.min),
+		backgroundColor: 'silver',
+		verticalAlign: 'bottom',
+	}
+
+	// convert js timestamp to day of week
 	const dayOfWeek = (timestamp) => {
 		let dayNum = new Date(snapshot.dt*1000).getDay();
 		if(dayNum===0){
@@ -28,6 +37,7 @@ const Snapshot = ({ snapshot, tempFormat }) => {
 		return "Sat";
 	}
 
+	// convert wind direction in degrees to wind direction text
 	const windDirection = (deg) => {
 		if(deg>348.75 || deg<11.25){
 			return "N";
@@ -65,36 +75,59 @@ const Snapshot = ({ snapshot, tempFormat }) => {
 			return"oops.... a mistake with "+deg+" degrees";
 		}
 	}
+
 	return(
 		<div
 			className="Snapshot"
 		>
-			<div className="text">
-				{ Math.round(snapshot.main.temp) }
+			<div className="temp-barchart-holder">
+				<div
+					className="temp-barchart"
+					style={barStyle}
+				>
+				</div>
 			</div>
-			<div className="temp-barchart">temp bar chart</div>
 			<div className="text">
-				{ new Date(snapshot.dt*1000).getHours() }<br />
-				{ new Date(snapshot.dt*1000).getHours()>11 && new Date(snapshot.dt*1000).getHours()<15 ? dayOfWeek(snapshot.dt) : null }
+				<p>{ Math.round(snapshot.main.temp) }</p>
+			</div>
+			<div className="text">
+				<p>
+					{ new Date(snapshot.dt*1000).getHours() }<br />
+					{ new Date(snapshot.dt*1000).getHours()>11 && new Date(snapshot.dt*1000).getHours()<15 ? dayOfWeek(snapshot.dt) : null }
+				</p>
 			</div>
 			<div className="text">
 				<img src={localAddress(snapshot.weather[0].icon)} alt={snapshot.weather[0].description}/>  
 			</div>
 			<div className="text">
-				{ snapshot.rain && Object.keys(snapshot.rain).indexOf("3h")>=0 ? Math.round(snapshot.rain["3h"]) : 0}
+				<p>
+					{ snapshot.rain && Object.keys(snapshot.rain).indexOf("3h")>=0 ? Math.round(snapshot.rain["3h"]) : 0}
+				</p>
 			</div>
 			<div className="text">
-				{ snapshot.snow && Object.keys(snapshot.snow).indexOf("3h")>=0 ? Math.round(snapshot.snow["3h"]) : 0}
+				<p>
+					{ snapshot.snow && Object.keys(snapshot.snow).indexOf("3h")>=0 ? Math.round(snapshot.snow["3h"]) : 0}
+				</p>
 			</div>
 			<div className="text">
-				{ snapshot.main.humidity }
-			</div>
-			<div className="text">{ snapshot.clouds.all}</div>
-			<div className="text">
-				{ Math.round(snapshot.wind.speed) }
+				<p>
+					{ snapshot.main.humidity }
+				</p>
 			</div>
 			<div className="text">
-				{ windDirection(snapshot.wind.deg) }
+				<p>
+					{ snapshot.clouds.all}
+				</p>
+			</div>
+			<div className="text">
+				<p>
+					{ Math.round(snapshot.wind.speed) }
+				</p>
+			</div>
+			<div className="text">
+				<p>
+					{ windDirection(snapshot.wind.deg) }
+				</p>
 			</div>
 		</div>
 	);
