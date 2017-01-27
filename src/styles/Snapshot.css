@@ -4,8 +4,20 @@
 	float:left;
 }
 
-.Snapshot .temp-barchart{
+.Snapshot .temp-barchart-holder{
 	min-height: 120px;
+	position: relative;
+}
+
+.Snapshot .temp-caption{
+	vertical-align: bottom;
+}
+
+.Snapshot .temp-barchart{
+	width: 100%;
+	position: absolute;
+	bottom:0;
+	left:0;
 }
 
 .Snapshot .text{
@@ -15,4 +27,8 @@
 .Snapshot img{
 	width: 100%;
 	height: auto;
+}
+
+.Snapshot p{
+	margin: 0;
 }
