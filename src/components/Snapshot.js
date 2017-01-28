@@ -18,7 +18,7 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 	}else{
 		color = (Math.floor(temp * -3.75 + 532))%360;
 	}
-	console.log("temp", temp, 'color', color)
+	console.log("temp", temp, 'color', color, 'wind direction', snapshot.wind.deg)
 	let barStyle = {
 		height: (Math.round(snapshot.main.temp)-tempRange.min)*60/(tempRange.max-tempRange.min),
 		backgroundColor: `hsl(${color}, 100%, 40%)`,
@@ -49,43 +49,9 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 		return "Sat";
 	}
 
-	// convert wind direction in degrees to wind direction text
-	const windDirection = (deg) => {
-		if(deg>348.75 || deg<11.25){
-			return "N";
-		}else if(deg<33.75){
-			return "NNE";
-		}else if(deg<56.25){
-			return "NE";
-		}else if(deg<78.75){
-			return "ENE";
-		}else if(deg<101.25){
-			return "E";
-		}else if(deg<123.75){
-			return "ESE";
-		}else if(deg<146.25){
-			return "SE";
-		}else if(deg<168.75){
-			return "SSE";
-		}else if(deg<191.25){
-			return "S";
-		}else if(deg<213.75){
-			return "SSW";
-		}else if(deg<236.25){
-			return "SW";
-		}else if(deg<258.75){
-			return "WSW";
-		}else if(deg<281.25){
-			return "W";
-		}else if(deg<303.75){
-			return "WNW";
-		}else if(deg<326.25){
-			return "NW";
-		}else if(deg<348.75){
-			return "NNW";
-		}else{
-			return"oops.... a mistake with "+deg+" degrees";
-		}
+	// convert wind direction in degrees to rotated arrow
+	const windDirection = {
+		transform: `rotate(${snapshot.wind.deg}deg)`
 	}
 
 	return(
@@ -138,7 +104,7 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 			</div>
 			<div className="text">
 				<p>
-					{ windDirection(snapshot.wind.deg) }
+					<i className="fa fa-long-arrow-up" style={windDirection}></i>
 				</p>
 			</div>
 		</div>
@@ -146,3 +112,4 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 }
 
 export default Snapshot;
+					// { windDirection(snapshot.wind.deg) }
