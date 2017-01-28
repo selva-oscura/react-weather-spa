@@ -35,16 +35,16 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 			</div>
 			<div className="time-series">
 				<div className="caption">
-					<div className="temp-barchart-holder"></div>
-					<div className="text">
-						<p>						
-							Temp (&deg;{ settings.tempFormat==="metric" ? "C" : "F" })
-						</p>
-					</div>
 					<div className="text">
 						<p>
 							Day<br />
 							Time
+						</p>
+					</div>
+					<div className="temp-barchart-holder"></div>
+					<div className="text">
+						<p>
+							Temp (&deg;{ settings.tempFormat==="metric" ? "C" : "F" })
 						</p>
 					</div>
 					<div className="text">&nbsp;</div>
