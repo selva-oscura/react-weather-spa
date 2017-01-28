@@ -35,12 +35,11 @@
 }
 
 .Detail .time-series{
-	width: 85%;
 	margin: 0 auto;
 }
 
 .Detail .time-series .caption{
-	font-size: 8px;
+	font-size: 1.5vw;
 	width: 8%;
 	float:left;
 }
@@ -50,7 +49,7 @@
 }
 
 .Detail .time-series .caption .text{
-	min-height: 24px;
+	min-height: 3.5vw;
 }
 
 .Detail .time-series p{

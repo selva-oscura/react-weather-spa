@@ -1,6 +1,6 @@
 .Snapshot{
-	width: 2%;
-	font-size: 8px;
+	width: 2.4%;
+	font-size: 1.4vw;
 	float:left;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .Snapshot .text{
-	min-height: 24px;
+	min-height: 3.5vw;
 }
 
 .Snapshot img{
@@ -31,4 +31,5 @@
 
 .Snapshot p{
 	margin: 0;
+	text-align: center;
 }
