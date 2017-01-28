@@ -18,7 +18,7 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 	}else{
 		color = (Math.floor(temp * -3.75 + 532))%360;
 	}
-	console.log("temp", temp, 'color', color, 'wind direction', snapshot.wind.deg)
+
 	let barStyle = {
 		height: (Math.round(snapshot.main.temp)-tempRange.min)*60/(tempRange.max-tempRange.min),
 		backgroundColor: `hsl(${color}, 100%, 40%)`,
@@ -26,9 +26,11 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 		border: `1px solid hsl(${color}, 100%, 30%)`,
 	}
 
+
 	// convert js timestamp to day of week
-	const dayOfWeek = (timestamp) => {
-		let dayNum = new Date(snapshot.dt*1000).getDay();
+	const date = new Date(snapshot.dt*1000);
+	const dayOfWeek = () => {
+		const dayNum = date.getDay();
 		if(dayNum===0){
 			return "Sun";
 		}
@@ -50,6 +52,19 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 		return "Sat";
 	}
 
+	const dayToggle = Math.floor(((date.getTime())/(24*60*60*1000))%2);
+	console.log(snapshot.dt_txt, dayToggle);
+	let dayOfWeekColorBar;
+	if(dayToggle){
+		dayOfWeekColorBar = {
+			borderBottom: `3px solid #01579b`,
+		}
+	}else{
+		dayOfWeekColorBar = {
+			borderBottom: `3px solid #29b6f6`,
+		}
+	}
+
 	// convert wind direction in degrees to rotated arrow
 	const windDirection = {
 		transform: `rotate(${snapshot.wind.deg}deg)`
@@ -59,6 +74,15 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 		<div
 			className="Snapshot"
 		>
+			<div 
+				className="text" 
+				style={dayOfWeekColorBar}
+			>
+				<p>
+					{ new Date(snapshot.dt*1000).getHours()>11 && new Date(snapshot.dt*1000).getHours()<15 ? dayOfWeek() : null }<br />
+					{ new Date(snapshot.dt*1000).getHours() }
+				</p>
+			</div>
 			<div className="temp-barchart-holder">
 				<div
 					className="temp-barchart"
@@ -68,12 +92,6 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 			</div>
 			<div className="text">
 				<p>{ Math.round(snapshot.main.temp) }</p>
-			</div>
-			<div className="text">
-				<p>
-					{ new Date(snapshot.dt*1000).getHours() }<br />
-					{ new Date(snapshot.dt*1000).getHours()>11 && new Date(snapshot.dt*1000).getHours()<15 ? dayOfWeek(snapshot.dt) : null }
-				</p>
 			</div>
 			<div className="text">
 				<img src={localAddress(snapshot.weather[0].icon)} alt={snapshot.weather[0].description}/>  
