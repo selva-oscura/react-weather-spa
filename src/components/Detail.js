@@ -68,8 +68,7 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 					</div>
 					<div className="text">
 						<p>
-							Cloud Cover<br />
-							(%)
+							Cloud Cover (%)
 						</p>
 					</div>
 					<div className="text">
