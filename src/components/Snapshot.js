@@ -23,6 +23,7 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 		height: (Math.round(snapshot.main.temp)-tempRange.min)*60/(tempRange.max-tempRange.min),
 		backgroundColor: `hsl(${color}, 100%, 40%)`,
 		verticalAlign: 'bottom',
+		border: `1px solid hsl(${color}, 100%, 30%)`,
 	}
 
 	// convert js timestamp to day of week
