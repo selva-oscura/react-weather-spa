@@ -14,8 +14,8 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 		tempRange.min = Math.min(tempRange.min, snapshot.main.temp);
 		tempRange.max = Math.max(tempRange.max, snapshot.main.temp);
 	});
-	tempRange.min = Math.floor(tempRange.min/5)*5;
-	tempRange.max = Math.ceil(tempRange.max/5)*5;
+	tempRange.min = Math.floor(tempRange.min/5-1)*5;
+	tempRange.max = Math.ceil(tempRange.max/5+1)*5;
 
 	console.log("currLocation", currLocation, "\nsettings", settings, "\navedLocations", favedLocations);
 	return (
@@ -38,8 +38,7 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 					<div className="temp-barchart-holder"></div>
 					<div className="text">
 						<p>						
-							Temp<br />
-							(&deg;{ settings.tempFormat==="metric" ? "C" : "F" })
+							Temp (&deg;{ settings.tempFormat==="metric" ? "C" : "F" })
 						</p>
 					</div>
 					<div className="text">
