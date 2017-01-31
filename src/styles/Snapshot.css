@@ -23,9 +23,15 @@
 	min-height: 3.5vw;
 }
 
-.Snapshot img{
+.Snapshot .weather-icon-holder{
 	width: 100%;
+	overflow:hidden;
+}
+
+.Snapshot img{
+	width: 140%;
 	height: auto;
+	margin: -20%;
 }
 
 .Snapshot p{

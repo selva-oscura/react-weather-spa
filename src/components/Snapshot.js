@@ -84,7 +84,7 @@ const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) 
 			<div className="text">
 				<p>{ Math.round(snapshot.main.temp) }</p>
 			</div>
-			<div className="text">
+			<div className="weather-icon-holder">
 				<img src={localAddress(snapshot.weather[0].icon)} alt={snapshot.weather[0].description}/>  
 			</div>
 			<div className="text">
