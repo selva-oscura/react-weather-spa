@@ -3,7 +3,16 @@ import '../styles/Snapshot.css';
 import icons from '../resources/icons.js';
 import moment from 'moment-timezone';
 
-const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange }) => {
+const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) => {
+	
+	// number of data points varies
+	// to maximise size of data points, width is calculated 
+	// based upon the number of data points returned
+	// 90% of area width available
+	let snapShotStyle={
+		width: `${(Math.floor(900/snapShotCount))/10}%`
+	}
+
 	// path to url for icon
 	const localAddress = (iconCode) => ( icons[`icon${iconCode}`] );
 	// formatting for temperature bar style
@@ -53,6 +62,7 @@ const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange }) => {
 	return(
 		<div
 			className="Snapshot"
+			style={snapShotStyle}
 		>
 			<div 
 				className="text" 
