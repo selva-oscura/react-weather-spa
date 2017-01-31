@@ -15,6 +15,7 @@ const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) 
 
 	// path to url for icon
 	const localAddress = (iconCode) => ( icons[`icon${iconCode}`] );
+
 	// formatting for temperature bar style
 	let temp = snapshot.main.temp;
 	if(tempFormat==="imperial"){
@@ -28,7 +29,6 @@ const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) 
 	}else{
 		color = (Math.floor(temp * -3.75 + 532))%360;
 	}
-
 	let barStyle = {
 		height: (Math.round(snapshot.main.temp)-tempRange.min)*60/(tempRange.max-tempRange.min),
 		backgroundColor: `hsl(${color}, 100%, 40%)`,
