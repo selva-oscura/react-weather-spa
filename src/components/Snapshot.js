@@ -6,9 +6,9 @@ import moment from 'moment-timezone';
 const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) => {
 	
 	// number of data points varies
-	// to maximise size of data points, width is calculated 
+	// To maximise size of data points, width is calculated 
 	// based upon the number of data points returned
-	// 90% of area width available
+	// (90% of area width available => 900/snapShotCount)
 	let snapShotStyle={
 		width: `${(Math.floor(900/snapShotCount))/10}%`
 	}
