@@ -1,8 +1,9 @@
 import React from 'react';
 import '../styles/Snapshot.css';
 import icons from '../resources/icons.js';
+import moment from 'moment-timezone';
 
-const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
+const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange }) => {
 	// path to url for icon
 	const localAddress = (iconCode) => ( icons[`icon${iconCode}`] );
 	// formatting for temperature bar style
@@ -26,34 +27,11 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 		border: `1px solid hsl(${color}, 100%, 30%)`,
 	}
 
+	// convert utc time to local time
+	const datetime = moment.utc(snapshot.dt*1000).tz(zoneName);
 
-	// convert js timestamp to day of week
-	const date = new Date(snapshot.dt*1000);
-	const dayOfWeek = () => {
-		const dayNum = date.getDay();
-		if(dayNum===0){
-			return "Sun";
-		}
-		if(dayNum===1){
-			return "Mon";
-		}
-		if(dayNum===2){
-			return "Tues";
-		}
-		if(dayNum===3){
-			return "Wed";
-		}
-		if(dayNum===4){
-			return "Thurs";
-		}
-		if(dayNum===5){
-			return "Fri";	
-		}
-		return "Sat";
-	}
-
-	const dayToggle = Math.floor(((date.getTime())/(24*60*60*1000))%2);
-	console.log(snapshot.dt_txt, dayToggle);
+	// day toggle to alternate colors to underscore change between days
+	const dayToggle = Number(datetime.format("DDDD"))%2;
 	let dayOfWeekColorBar;
 	if(dayToggle){
 		dayOfWeekColorBar = {
@@ -65,11 +43,13 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 		}
 	}
 
+	// hour information
+	const hour = datetime.format("HH");
+
 	// convert wind direction in degrees to rotated arrow
 	const windDirection = {
 		transform: `rotate(${snapshot.wind.deg}deg)`
 	}
-
 	return(
 		<div
 			className="Snapshot"
@@ -78,9 +58,10 @@ const Snapshot = ({ snapshot, tempFormat, tempRange }) => {
 				className="text" 
 				style={dayOfWeekColorBar}
 			>
+					{ hour>11 && hour<15 ? datetime.format("ddd") : null }<br />
+					{ hour }
+
 				<p>
-					{ new Date(snapshot.dt*1000).getHours()>11 && new Date(snapshot.dt*1000).getHours()<15 ? dayOfWeek() : null }<br />
-					{ new Date(snapshot.dt*1000).getHours() }
 				</p>
 			</div>
 			<div className="temp-barchart-holder">
