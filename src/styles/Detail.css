@@ -35,12 +35,13 @@
 }
 
 .Detail .time-series{
+	width: 100%;
 	margin: 0 auto;
 }
 
 .Detail .time-series .caption{
 	font-size: 1.5vw;
-	width: 8%;
+	width: 9%;
 	float:left;
 }
 
@@ -55,3 +56,4 @@
 .Detail .time-series p{
 	margin: 0;
 }
+
