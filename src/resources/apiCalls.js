@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { openWeather } from './apis.json';
+import { openWeather, timeZoneDB } from './apis.json';
 
-const weatherQueries = {
+const apiCalls = {
+	//openWeather
 	singleForecastWeatherAPI: function(city, country, id, tempFormat){
 		let apiCall =`${openWeather.baseURL}forecast`;
 		if(id){
@@ -13,17 +14,30 @@ const weatherQueries = {
 		console.log('apiCall', apiCall);
 		return axios.get(apiCall)
 			.then((response) => {
-				console.log('response', response)
+				console.log('openWeather response', response)
 				return response;
 			}).catch((error) => {
-				console.log('error', error)
+				console.log('openWeather error', error)
 				throw error;
 			});
 	},
 	multiQueryWeatherAPI: function(idsArray, tempFormat){
 		console.log('multi-location query to go here');
 		return null;
+	},
+	//timeZoneDB
+	latLonOffsetFromUTCAPI: function(lat, lon){
+		let apiCall = `${timeZoneDB.baseURL}get-time-zone?key=${timeZoneDB.apiKey}&format=json&by=position&lat=${lat}&lng=${lon}`;
+		console.log('apiCall', apiCall);
+		return axios.get(apiCall)
+			.then((response) => {
+				console.log('timeZoneDB response', response);
+				return response;
+			}).catch((error) =>{
+				console.log('timeZoneDB error', error);
+				throw error;
+			});
 	}
 }
 
-export default weatherQueries;
+export default apiCalls;
