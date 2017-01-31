@@ -8,6 +8,10 @@
 	vertical-align: top;
 }
 
+.Detail .summary-text{
+	width: calc(100% - 60px);
+}
+
 .Detail .summary-text h2{
 	margin-top:12px;
 }
