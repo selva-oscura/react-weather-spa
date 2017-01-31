@@ -42,30 +42,43 @@ const App = React.createClass({
 			let currLocation = {
 				city: searchInput.city,
 				country: searchInput.country,
+				utcOffset: undefined,
+				zoneName: undefined,
 			}
 			searchInput.id ? currLocation.id = searchInput.id : currLocation.id=null;
 			currPage="loading";
 			this.setState({errors, currLocation, currPage});
-			apiCalls.singleForecastWeatherAPI(this.purgeOfSpacesAndCommas(currLocation.city), currLocation.country, currLocation.id, settings.tempFormat)
-			.then((apiResponse, error) => {
-				console.log('apiResponse', apiResponse);
-				currLocation.id = apiResponse.data.city.id;
-				currLocation.coord = apiResponse.data.city.coord;
-				currLocation.data = [].concat(apiResponse.data.list)
-				currLocation.status=apiResponse.status;
-				if(apiResponse.status===200){ 
-					currPage="detail"; 
-					errors=[];
-				}else{
-					errors=["Error?", apiResponse.status,  apiResponse.statusText];
-				}
-				this.setState({currLocation, errors, currPage});
-			}).catch((error) => {
-				console.log('error in catch for submitLocation', error);
-				errors = [`Error: ${error.response.status} ${error.response.statusText}`];
-				currPage = "blank"
-				this.setState({errors, currPage});
-			});
+			let city = this.purgeOfSpacesAndCommas(currLocation.city);
+			apiCalls.singleForecastWeatherAPI(city, currLocation.country, currLocation.id, settings.tempFormat)
+				.then((apiResponse, error) => {
+					console.log('apiResponse', apiResponse);
+					currLocation.id = apiResponse.data.city.id;
+					currLocation.coord = apiResponse.data.city.coord;
+					currLocation.data = [].concat(apiResponse.data.list)
+					currLocation.status=apiResponse.status;
+					if(apiResponse.status===200){ 
+						currPage="detail"; 
+						errors=[];
+					}else{
+						errors=["Error?", apiResponse.status,  apiResponse.statusText];
+					}
+					apiCalls.latLonOffsetFromUTCAPI(apiResponse.data.city.coord.lat, apiResponse.data.city.coord.lon)
+						.then((apiResponse, error) => {
+							currLocation.utcOffset = apiResponse.data.gmtOffset;
+							currLocation.zoneName = apiResponse.data.zoneName;
+							this.setState({currLocation, errors, currPage});
+						}).catch((error) => {
+							console.log('error from timeZoneDB', error)
+							errors=[`Error: ${error.status}, ${error.message}`];
+							currPage = "blank"
+							this.setState({errors, currPage});
+						});
+				}).catch((error) => {
+					console.log('error in catch for submitLocation', error);
+					errors = [`Error: ${error.response.status} ${error.response.statusText}`];
+					currPage = "blank"
+					this.setState({errors, currPage});
+				});
 		}else{
 			errors = ["Please enter a city (and state/province if needed)."];
 			this.setState({errors});
