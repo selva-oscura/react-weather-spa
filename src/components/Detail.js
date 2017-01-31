@@ -10,6 +10,7 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 		min: Infinity, 
 		max: -Infinity
 	};
+	const snapShotCount = currLocation.data.length;
 	currLocation.data.forEach((snapshot) => {
 		tempRange.min = Math.min(tempRange.min, snapshot.main.temp);
 		tempRange.max = Math.max(tempRange.max, snapshot.main.temp);
@@ -83,8 +84,19 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 						</p>
 					</div>
 				</div>
+				{currLocation.data.map((snapshot, i) => (
+						<Snapshot 
+							key={i} 
+							snapshot={snapshot} 
+							tempFormat={settings.tempFormat} 
+							zoneName={currLocation.zoneName} 
+							tempRange={tempRange} 
+							snapShotCount={snapShotCount}
+						/>
+					)
+				)}
+				<div className="clear"></div>
 			</div>
-			{currLocation.data.map((snapshot, i) => <Snapshot key={i} snapshot={snapshot} tempFormat={settings.tempFormat} tempRange={tempRange} />)}
 		</div>
 	)	
 
