@@ -1,0 +1,35 @@
+.Favorites {
+	width: 100%;
+}
+
+.Favorite {
+	background-color: white;
+	width: calc(100% - 8px);
+	margin: 4px auto;
+}
+
+.Favorite .city-info, .Favorite .weather-info, .Favorite .current-temperature, .Favorite .DayForecast{
+	display: inline-block;
+}
+
+.Favorite .city-info{
+	width: 150px;
+}
+
+.Favorite .weather-info{
+	width: calc(100% - 160px);
+}
+
+.Favorite h3, .Favorite p{
+	margin: 0px;
+}
+
+.Favorite .current-temperature{
+	text-align: center;
+}
+
+.DayForecast{
+	text-align: right;
+	vertical-align: top;
+	padding-left: 24px;
+}
