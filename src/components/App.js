@@ -103,19 +103,26 @@ const App = React.createClass({
 		return response.join("");
 	},
 	addToFavorites(){
-		let apiResponse = this.state.currLocation.apiResponse;
+		let location = this.state.currLocation;
+		let id = location.id;
 		let {favedLocations, errors} = this.state;
-		console.log('apiResponse', apiResponse, "favedLocations", favedLocations, "errors", errors);
-		if(apiResponse.id && apiResponse.name && apiResponse.coord.lon && apiResponse.coord.lat){
-			favedLocations[apiResponse.id] = {
-				name: apiResponse.name,
+		console.log('currLocation in addToFavorites', location, "favedLocations", favedLocations, "errors", errors);
+		console.log('checking id', location.id)
+		if(location.id){
+			favedLocations[id] = {
+				city: 		location.city,
+				country: 	location.country,
 				coord: {
-					lon: apiResponse.coord.lon,
-					lat: apiResponse.coord.lat,
-				}
+					lon: location.coord.lon,
+					lat: location.coord.lat,
+				},
+				zoneName: 		location.zoneName,
+				lastUpdated: 	location.lastUpdated,
+				data: 				location.data,
 			}
+			this.setState({favedLocations: favedLocations, errors: []});
 		}else{
-			this.setState({errors:[`Unable to access openWeather data, id:${apiResponse.id}, name: ${apiResponse.name}, coord lon (${apiResponse.coord.lon}), lat(${apiResponse.coord.lat})`]});
+			this.setState({errors:[`Unable to access openWeather data, id:${location.id}, city: ${location.city}, coord lon (${location.coord.lon}), lat(${location.coord.lat})`]});
 			return;
 		}
 		this.setState({favedLocations: favedLocations, errors: []});
