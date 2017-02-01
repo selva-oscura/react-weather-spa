@@ -8,28 +8,42 @@
 	margin: 4px auto;
 }
 
+.Favorite h3{
+	font-size: 4vw;
+}
+
+.Favorite p{
+	font-size: 3vw;
+}
+
+
+
 .Favorite .city-info, .Favorite .weather-info, .Favorite .current-temperature, .Favorite .DayForecast{
 	display: inline-block;
 }
 
 .Favorite .city-info{
-	width: 150px;
+	width: 25%;
 }
 
 .Favorite .weather-info{
-	width: calc(100% - 160px);
+	width: 75%;
 }
 
 .Favorite h3, .Favorite p{
-	margin: 0px;
+		margin: 0px;
 }
 
 .Favorite .current-temperature{
 	text-align: center;
 }
 
+.Favorite .current-temperature img{
+	width: 60%;
+}
+
+
 .DayForecast{
 	text-align: right;
 	vertical-align: top;
-	padding-left: 24px;
 }
