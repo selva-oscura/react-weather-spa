@@ -38,6 +38,7 @@ const Body = ({currPage, currLocation, errors, response, settings, updateSetting
 			page = (
 				<Favorites 
 					favedLocations={favedLocations}
+					tempFormat={settings.tempFormat}
 				/>
 			);
 			break;
