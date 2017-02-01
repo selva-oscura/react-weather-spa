@@ -47,6 +47,7 @@ const App = React.createClass({
 			}
 			searchInput.id ? currLocation.id = searchInput.id : currLocation.id=null;
 			currPage="loading";
+			let lastUpdated = Date.now();
 			this.setState({errors, currLocation, currPage});
 			let city = this.purgeOfSpacesAndCommas(currLocation.city);
 			apiCalls.singleForecastWeatherAPI(city, currLocation.country, currLocation.id, settings.tempFormat)
@@ -54,8 +55,9 @@ const App = React.createClass({
 					console.log('apiResponse', apiResponse);
 					currLocation.id = apiResponse.data.city.id;
 					currLocation.coord = apiResponse.data.city.coord;
-					currLocation.data = [].concat(apiResponse.data.list)
+					currLocation.data = apiResponse.data.list;
 					currLocation.status=apiResponse.status;
+					currLocation.lastUpdated = lastUpdated;
 					if(apiResponse.status===200){ 
 						currPage="detail"; 
 						errors=[];
