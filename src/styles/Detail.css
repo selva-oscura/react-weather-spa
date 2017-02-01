@@ -1,8 +1,3 @@
-.Detail{
-/*	width: 350px;
-	height: 400px;
-	margin: 0 auto;*/
-}
 .Detail .summary div{
 	display: inline-block;
 	vertical-align: top;
@@ -53,11 +48,14 @@
 	min-height: 60px;
 }
 
-.Detail .time-series .caption .text{
+.time-series .text{
 	min-height: 3.5vw;
+}
+
+.time-series .temp{
+	min-height: 1.75vw;
 }
 
 .Detail .time-series p{
 	margin: 0;
 }
-

@@ -68,7 +68,7 @@ const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) 
 				className="text" 
 				style={dayOfWeekColorBar}
 			>
-					{ hour>11 && hour<15 ? datetime.format("ddd") : null }<br />
+					{ hour>8 && hour<12 ? datetime.format("ddd") : null }<br />
 					{ hour }
 
 				<p>
@@ -81,7 +81,7 @@ const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) 
 				>
 				</div>
 			</div>
-			<div className="text">
+			<div className="temp">
 				<p>{ Math.round(snapshot.main.temp) }</p>
 			</div>
 			<div className="weather-icon-holder">

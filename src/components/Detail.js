@@ -43,7 +43,7 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 						</p>
 					</div>
 					<div className="temp-barchart-holder"></div>
-					<div className="text">
+					<div className="temp">
 						<p>
 							Temp (&deg;{ settings.tempFormat==="metric" ? "C" : "F" })
 						</p>

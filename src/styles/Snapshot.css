@@ -19,10 +19,6 @@
 	left:0;
 }
 
-.Snapshot .text{
-	min-height: 3.5vw;
-}
-
 .Snapshot .weather-icon-holder{
 	width: 100%;
 	overflow:hidden;
