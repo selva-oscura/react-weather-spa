@@ -52,7 +52,6 @@ const App = React.createClass({
 			let city = this.purgeOfSpacesAndCommas(currLocation.city);
 			apiCalls.singleForecastWeatherAPI(city, currLocation.country, currLocation.id, settings.tempFormat)
 				.then((apiResponse, error) => {
-					console.log('apiResponse', apiResponse);
 					currLocation.id = apiResponse.data.city.id;
 					currLocation.coord = apiResponse.data.city.coord;
 					currLocation.data = apiResponse.data.list;
@@ -62,7 +61,7 @@ const App = React.createClass({
 						currPage="detail"; 
 						errors=[];
 					}else{
-						errors=["Error?", apiResponse.status,  apiResponse.statusText];
+						errors=["Error?", apiResponse.status, apiResponse.statusText];
 					}
 					apiCalls.latLonOffsetFromUTCAPI(apiResponse.data.city.coord.lat, apiResponse.data.city.coord.lon)
 						.then((apiResponse, error) => {
@@ -77,6 +76,8 @@ const App = React.createClass({
 						});
 				}).catch((error) => {
 					console.log('error in catch for submitLocation', error);
+					console.log('error.response.status', error.response.status)
+					console.log('error.response.statusText', error.response.statusText)
 					errors = [`Error: ${error.response.status} ${error.response.statusText}`];
 					currPage = "blank"
 					this.setState({errors, currPage});
@@ -106,8 +107,6 @@ const App = React.createClass({
 		let location = this.state.currLocation;
 		let id = location.id;
 		let {favedLocations, errors} = this.state;
-		console.log('currLocation in addToFavorites', location, "favedLocations", favedLocations, "errors", errors);
-		console.log('checking id', location.id)
 		if(location.id){
 			favedLocations[id] = {
 				city: 		location.city,
