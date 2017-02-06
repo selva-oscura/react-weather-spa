@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import Background from './Background';
 import Body from './Body';
 import apiCalls from  '../resources/apiCalls.js';
 import '../styles/App.css';
@@ -22,7 +23,11 @@ const App = React.createClass({
 		}
 	},
 	handleNav(e){
-		this.setState({currPage:e.target.id});
+		let searchInput = {
+			city: "",
+			country: "US",
+		}
+		this.setState({currPage:e.target.id, searchInput:searchInput});
 	},
 	updateSetting(e){
 		let settings=this.state.settings;
@@ -47,8 +52,8 @@ const App = React.createClass({
 			}
 			searchInput.id ? currLocation.id = searchInput.id : currLocation.id=null;
 			currPage="loading";
-			let lastUpdated = Date.now();
 			this.setState({errors, currLocation, currPage});
+			let lastUpdated = Date.now();
 			let city = this.purgeOfSpacesAndCommas(currLocation.city);
 			apiCalls.singleForecastWeatherAPI(city, currLocation.country, currLocation.id, settings.tempFormat)
 				.then((apiResponse, error) => {
@@ -107,8 +112,10 @@ const App = React.createClass({
 		let location = this.state.currLocation;
 		let id = location.id;
 		let {favedLocations, errors} = this.state;
+		let lastUpdated = Date.now();
 		if(location.id){
 			favedLocations[id] = {
+				id: 			location.id,
 				city: 		location.city,
 				country: 	location.country,
 				coord: {
@@ -129,6 +136,7 @@ const App = React.createClass({
   render() {
     return (
       <div className="App">
+      	<Background />
         <Header 
         	handleNav={this.handleNav}
         	currPage={this.state.currPage}
