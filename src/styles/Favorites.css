@@ -4,8 +4,23 @@
 
 .Favorite {
 	background-color: white;
-	width: calc(100% - 8px);
+	width: calc(100% - 12px);
 	margin: 4px auto;
+	padding: 4px;
+	border: 2px solid transparent;
+	transition: all .5s;
+}
+
+.Favorite p, .Favorite h3{
+	transition: all .5s;
+}
+
+.Favorite:hover{
+	border: 8px solid #29b6f6 rgba(41, 182, 246, 1);
+}
+
+.Favorite:hover p, .Favorite:hover h3{
+	color: #29b6f6;
 }
 
 .Favorite h3{
