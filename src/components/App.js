@@ -133,6 +133,60 @@ const App = React.createClass({
 		}
 		this.setState({favedLocations: favedLocations, errors: []});
 	},
+	seeDetail(locationId){
+		console.log('seeDetail clicked', this, locationId, this.state.favorites);
+		let currPage = 'detail';
+		let currLocation = this.state.favedLocations[locationId];
+		console.log('about to be set to currLocation and detai', currLocation)
+		this.setState({currPage: currPage, currLocation: currLocation});
+		// 	let currLocation = {
+		// 		city: searchInput.city,
+		// 		country: searchInput.country,
+		// 		utcOffset: undefined,
+		// 		zoneName: undefined,
+		// 	}
+		// 	searchInput.id ? currLocation.id = searchInput.id : currLocation.id=null;
+		// 	currPage="loading";
+		// 	this.setState({errors, currLocation, currPage});
+		// 	let city = this.purgeOfSpacesAndCommas(currLocation.city);
+		// 	apiCalls.singleForecastWeatherAPI(city, currLocation.country, currLocation.id, settings.tempFormat)
+		// 		.then((apiResponse, error) => {
+		// 			currLocation.id = apiResponse.data.city.id;
+		// 			currLocation.coord = apiResponse.data.city.coord;
+		// 			currLocation.data = apiResponse.data.list;
+		// 			currLocation.status=apiResponse.status;
+		// 			currLocation.lastUpdated = apiResponse.data.dt*1000;
+		// 			if(apiResponse.status===200){ 
+		// 				currPage="detail"; 
+		// 				errors=[];
+		// 			}else{
+		// 				errors=["Error?", apiResponse.status, apiResponse.statusText];
+		// 			}
+		// 			apiCalls.latLonOffsetFromUTCAPI(apiResponse.data.city.coord.lat, apiResponse.data.city.coord.lon)
+		// 				.then((apiResponse, error) => {
+		// 					currLocation.utcOffset = apiResponse.data.gmtOffset;
+		// 					currLocation.zoneName = apiResponse.data.zoneName;
+		// 					this.setState({currLocation, errors, currPage});
+		// 				}).catch((error) => {
+		// 					console.log('error from timeZoneDB', error)
+		// 					errors=[`Error: ${error.status}, ${error.message}`];
+		// 					currPage = "blank"
+		// 					this.setState({errors, currPage});
+		// 				});
+		// 		}).catch((error) => {
+		// 			console.log('error in catch for submitLocation', error);
+		// 			console.log('error.response.status', error.response.status)
+		// 			console.log('error.response.statusText', error.response.statusText)
+		// 			errors = [`Error: ${error.response.status} ${error.response.statusText}`];
+		// 			currPage = "blank"
+		// 			this.setState({errors, currPage});
+		// 		});
+		// }else{
+		// 	errors = ["Please enter a city (and state/province if needed)."];
+		// 	this.setState({errors});
+		// }
+
+	},
   render() {
     return (
       <div className="App">
@@ -153,6 +207,7 @@ const App = React.createClass({
         	updateSetting={this.updateSetting}
         	addToFavorites={this.addToFavorites}
         	favedLocations={this.state.favedLocations}
+        	seeDetail={this.seeDetail}
         />
       </div>
     );

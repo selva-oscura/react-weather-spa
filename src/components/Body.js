@@ -9,7 +9,7 @@ import Settings from './Settings';
 import Splash from './Splash';
 import '../styles/Body.css';
 
-const Body = ({currPage, currLocation, errors, response, settings, updateSetting, addToFavorites, favedLocations}) => {
+const Body = ({currPage, currLocation, errors, response, settings, updateSetting, addToFavorites, favedLocations, seeDetail}) => {
 	let page;
 	switch(currPage){
 		case "splash":
@@ -39,6 +39,7 @@ const Body = ({currPage, currLocation, errors, response, settings, updateSetting
 				<Favorites 
 					favedLocations={favedLocations}
 					tempFormat={settings.tempFormat}
+					seeDetail={seeDetail}
 				/>
 			);
 			break;

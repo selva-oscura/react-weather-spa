@@ -3,16 +3,16 @@ import '../styles/Favorites.css';
 import icons from '../resources/icons.js';
 import moment from 'moment-timezone';
 
-const Favorites = ({favedLocations, tempFormat}) => (
+const Favorites = ({favedLocations, tempFormat, seeDetail}) => (
 	<div
 		className="Favorites"
 	>
 		<h2>Favorites</h2>
-		{Object.keys(favedLocations).map((key)=>(<Favorite key={key} locationId={key} favedLocation={favedLocations[key]} tempFormat={tempFormat} />))}
+		{Object.keys(favedLocations).map((key)=>(<Favorite key={key} locationId={key} favedLocation={favedLocations[key]} tempFormat={tempFormat} seeDetail={seeDetail} />))}
 	</div>
 );
 
-const Favorite = ({locationId, favedLocation, tempFormat}) => {
+const Favorite = ({locationId, favedLocation, tempFormat, seeDetail}) => {
 
 		// path to url for icon
 	const localAddress = (iconCode) => ( icons[`icon${iconCode}`] );
@@ -48,7 +48,10 @@ const Favorite = ({locationId, favedLocation, tempFormat}) => {
 	}
 
 	return(
-		<div className="Favorite">
+		<div 
+			className="Favorite"
+			onClick={() => seeDetail(locationId)}
+		>
 			<div className="city-info">
 				<h3 className="city-name">
 					{favedLocation.city.toUpperCase()}, {favedLocation.country}
