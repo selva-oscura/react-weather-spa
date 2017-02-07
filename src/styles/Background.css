@@ -3,12 +3,41 @@
   top: 0;
   left: 0;
 	height: 100vh;
+	z-index: -50
 }
 
 .Background img{
-  min-width: 100vw;
-  height: 100vh;
+/*  height: 10vh;*/
   z-index: -100;
   overflow: hidden;
   overflow-x: hidden; 
+}
+
+@media (max-aspect-ratio: 2/3){
+	.Background img{
+	  height: 100vh;
+	  width: auto;
+	}
+}
+
+@media (min-aspect-ratio: 2/3){
+	.Background img{
+	  width: 100vw;
+	  height: auto;
+	}
+}
+
+
+@media (min-aspect-ratio: 1/1){
+	.Background img{
+	  height: 100vh;
+	  width: auto;
+	}
+}
+
+@media (min-aspect-ratio: 3/2){
+	.Background img{
+	  width: 100vw;
+	  height: auto;
+	}
 }
