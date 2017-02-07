@@ -2,9 +2,9 @@ import React from 'react';
 import '../styles/Background.css';
 import backgrounds from '../resources/backgrounds.js';
 
-const Background = ({}) => (
+const Background = ({aspectRatio, currSeason}) => (
 	<div className="Background">
-		<img src={backgrounds['background01p']} alt="some weather" />  
+		<img src={backgrounds[`background${currSeason}${aspectRatio}`]} alt="some weather" />  
 	</div>
 );
 
