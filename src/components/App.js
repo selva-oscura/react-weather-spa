@@ -18,8 +18,10 @@ const App = React.createClass({
 			settings:{
 				tempFormat: "metric",
 			},
+			aspectRatio: "l",
+			currSeason: "02",
 			errors: [],
-			response: ""
+			response: "",
 		}
 	},
 	handleNav(e){
@@ -187,10 +189,51 @@ const App = React.createClass({
 		// }
 
 	},
+	calculateSeason(){
+		let d = new Date();
+		let month = d.getMonth();
+		if(month === 11 || month <3){
+			return "04";
+		}else if(month <6){
+			return "01";
+		}else if(month<9){
+			return "02";
+		}
+		return "03";
+	},
+	updateAspectRatio(){
+		var w=window,
+			d=document,
+			e=d.documentElement,
+			g=d.getElementsByTagName('body')[0],
+			x=w.innerWidth||e.clientWidth||g.clientWidth,
+			y=w.innerHeight||e.clientHeight||g.clientHeight;
+		if(x>y){
+			this.setState({aspectRatio: 'l'})
+		}else{
+			this.setState({aspectRatio: 'p'})
+		}
+	},
+	componentWillMount(){
+		this.updateAspectRatio();
+		let {currSeason} = this.state;
+		currSeason = this.calculateSeason();
+		this.setState({currSeason: currSeason});
+		console.log("currSeason", currSeason);
+	},
+	componentDidMount: function() {
+		window.addEventListener("resize", this.updateAspectRatio);
+	},
+	componentWillUnmount: function() {
+		window.removeEventListener("resize", this.updateAspectRatio);
+	},
   render() {
     return (
       <div className="App">
-      	<Background />
+      	<Background 
+      		aspectRatio={this.state.aspectRatio}
+      		currSeason={this.state.currSeason}
+      	/>
         <Header 
         	handleNav={this.handleNav}
         	currPage={this.state.currPage}
