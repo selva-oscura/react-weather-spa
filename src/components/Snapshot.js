@@ -57,7 +57,7 @@ const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) 
 
 	// convert wind direction in degrees to rotated arrow
 	const windDirection = {
-		transform: `rotate(${snapshot.wind.deg}deg)`
+		transform: `rotate(${(snapshot.wind.deg+180)%360}deg)`
 	}
 	return(
 		<div
