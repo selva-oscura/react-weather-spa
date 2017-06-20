@@ -1,6 +1,23 @@
 {
-  "name": "weather-spa",
+  "name": "Weather Vane",
   "version": "0.1.0",
+  "description": "Weather Vane",
+  "homepage": "https://selva-oscura.github.io/react-weather-spa",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selva-oscura/react-weather-spa.git"
+  },
+  "keywords": [
+    "JS",
+    "React",
+    "create-react-app",
+    "PWA"
+  ],
+  "author": "Carol  St. Louis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/selva-oscura/react-weather-spa/issues"
+  },
   "private": true,
   "devDependencies": {
     "react-scripts": "1.0.7"
