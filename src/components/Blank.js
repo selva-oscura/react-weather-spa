@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Blank = ({}) => (
+const Blank = () => (
 	<div className="Blank"></div>
 );
 
