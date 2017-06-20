@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Header from './Header';
 import Background from './Background';
 import Body from './Body';
 import apiCalls from  '../resources/apiCalls.js';
 import '../styles/App.css';
 
-const App = React.createClass({
-	getInitialState(){
-		return {
+class App extends Component {
+	constructor(props){
+		super(props);
+		this.state = {
 			currPage: "splash",
 			currLocation: {},
 			favedLocations: {},
@@ -21,26 +22,35 @@ const App = React.createClass({
 			aspectRatio: "l",
 			currSeason: "02",
 			errors: [],
-			response: "",
+			response: "",			
 		}
-	},
+		this.handleNav = this.handleNav.bind(this);
+		this.updateSetting = this.updateSetting.bind(this);
+		this.updateLocation = this.updateLocation.bind(this);
+		this.submitLocation = this.submitLocation.bind(this);
+		this.purgeOfSpacesAndCommas = this.purgeOfSpacesAndCommas.bind(this);
+		this.addToFavorites = this.addToFavorites.bind(this);
+		this.seeDetail = this.seeDetail.bind(this);
+		this.calculateSeason = this.calculateSeason.bind(this);
+		this.updateAspectRatio = this.updateAspectRatio.bind(this);
+	}
 	handleNav(e){
 		let searchInput = {
 			city: "",
 			country: "US",
 		}
 		this.setState({currPage:e.target.id, searchInput:searchInput});
-	},
+	}
 	updateSetting(e){
 		let settings=this.state.settings;
 		settings[e.target.name]=e.target.value;
 		this.setState({settings});
-	},
+	}
 	updateLocation(e){
 		let searchInput = this.state.searchInput;
 		searchInput[e.target.id]=e.target.value;
 		this.setState({searchInput});
-	},
+	}
 	submitLocation(e){
 		e.preventDefault();
 		let {errors, currPage, searchInput, settings} = this.state;
@@ -93,7 +103,7 @@ const App = React.createClass({
 			errors = ["Please enter a city (and state/province if needed)."];
 			this.setState({errors});
 		}
-	},
+	}
 	purgeOfSpacesAndCommas(str){
 		let response = [];
 		str.split("").forEach((char, i) => {
@@ -109,7 +119,7 @@ const App = React.createClass({
 			}
 		});
 		return response.join("");
-	},
+	}
 	addToFavorites(){
 		let location = this.state.currLocation;
 		let id = location.id;
@@ -134,7 +144,7 @@ const App = React.createClass({
 			return;
 		}
 		this.setState({favedLocations: favedLocations, errors: []});
-	},
+	}
 	seeDetail(locationId){
 		console.log('seeDetail clicked', this, locationId, this.state.favorites);
 		let currPage = 'detail';
@@ -187,8 +197,7 @@ const App = React.createClass({
 		// 	errors = ["Please enter a city (and state/province if needed)."];
 		// 	this.setState({errors});
 		// }
-
-	},
+	}
 	calculateSeason(){
 		let d = new Date();
 		let month = d.getMonth();
@@ -200,7 +209,7 @@ const App = React.createClass({
 			return "02";
 		}
 		return "03";
-	},
+	}
 	updateAspectRatio(){
 		var w=window,
 			d=document,
@@ -213,20 +222,20 @@ const App = React.createClass({
 		}else{
 			this.setState({aspectRatio: 'p'})
 		}
-	},
+	}
 	componentWillMount(){
 		this.updateAspectRatio();
 		let {currSeason} = this.state;
 		currSeason = this.calculateSeason();
 		this.setState({currSeason: currSeason});
 		console.log("currSeason", currSeason);
-	},
-	componentDidMount: function() {
+	}
+	componentDidMount() {
 		window.addEventListener("resize", this.updateAspectRatio);
-	},
-	componentWillUnmount: function() {
+	}
+	componentWillUnmount() {
 		window.removeEventListener("resize", this.updateAspectRatio);
-	},
+	}
   render() {
     return (
       <div className="App">
@@ -255,6 +264,6 @@ const App = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default App;
