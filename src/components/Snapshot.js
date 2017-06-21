@@ -89,27 +89,32 @@ const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) 
 			</div>
 			<div className="text">
 				<p>
-					{ snapshot.rain && Object.keys(snapshot.rain).indexOf("3h")>=0 ? snapshot.rain["3h"].toFixed(1) : 0}
+					{ snapshot.rain && Object.keys(snapshot.rain).indexOf("3h")>=0 ? snapshot.rain["3h"].toFixed(1) : "0.0"}
+					<br />&nbsp;
 				</p>
 			</div>
 			<div className="text">
 				<p>
-					{ snapshot.snow && Object.keys(snapshot.snow).indexOf("3h")>=0 ? snapshot.snow["3h"].toFixed(1) : 0}
+					{ snapshot.snow && Object.keys(snapshot.snow).indexOf("3h")>=0 ? snapshot.snow["3h"].toFixed(1) : "0.0"}
+					<br />&nbsp;
 				</p>
 			</div>
 			<div className="text">
 				<p>
 					{ snapshot.main.humidity }
+					<br />&nbsp;
 				</p>
 			</div>
 			<div className="text">
 				<p>
 					{ snapshot.clouds.all}
+					<br />&nbsp;
 				</p>
 			</div>
 			<div className="text">
 				<p>
 					{ Math.round(snapshot.wind.speed) }
+					<br />&nbsp;
 				</p>
 			</div>
 			<div className="text">
