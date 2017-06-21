@@ -10,7 +10,7 @@ const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) 
 	// based upon the number of data points returned
 	// (90% of area width available => 900/snapShotCount)
 	let snapShotStyle={
-		width: `${(Math.floor(900/snapShotCount))/10}%`
+		width: `${(Math.floor(800/snapShotCount))/10}%`
 	}
 
 	// path to url for icon
@@ -27,13 +27,13 @@ const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) 
 	}else if(temp>50){
 		color=345;
 	}else{
-		color = (Math.floor(temp * -3.75 + 532))%360;
+		color = (Math.floor(temp * -3.8 + 530))%360;
 	}
 	let barStyle = {
-		height: (Math.round(snapshot.main.temp)-tempRange.min)*60/(tempRange.max-tempRange.min),
-		backgroundColor: `hsl(${color}, 100%, 40%)`,
+		height: (Math.round(snapshot.main.temp)-tempRange.min)*120/(tempRange.max-tempRange.min),
+		backgroundColor: `hsl(${color}, 100%, 50%)`,
 		verticalAlign: 'bottom',
-		border: `1px solid hsl(${color}, 100%, 30%)`,
+		border: `1px solid hsl(${color}, 100%, 40%)`,
 	}
 
 	// convert utc time to local time
@@ -53,7 +53,7 @@ const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) 
 	}
 
 	// hour information
-	const hour = datetime.format("HH");
+	const hour = (Math.round((datetime.format("HH")) / 3) * 3) % 24;
 
 	// convert wind direction in degrees to rotated arrow
 	const windDirection = {
@@ -89,12 +89,12 @@ const Snapshot = ({ snapshot, tempFormat, zoneName, tempRange, snapShotCount }) 
 			</div>
 			<div className="text">
 				<p>
-					{ snapshot.rain && Object.keys(snapshot.rain).indexOf("3h")>=0 ? Math.round(snapshot.rain["3h"]) : 0}
+					{ snapshot.rain && Object.keys(snapshot.rain).indexOf("3h")>=0 ? snapshot.rain["3h"].toFixed(1) : 0}
 				</p>
 			</div>
 			<div className="text">
 				<p>
-					{ snapshot.snow && Object.keys(snapshot.snow).indexOf("3h")>=0 ? Math.round(snapshot.snow["3h"]) : 0}
+					{ snapshot.snow && Object.keys(snapshot.snow).indexOf("3h")>=0 ? snapshot.snow["3h"].toFixed(1) : 0}
 				</p>
 			</div>
 			<div className="text">
