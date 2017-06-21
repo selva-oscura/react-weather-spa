@@ -43,8 +43,22 @@
 }
 
 .Detail .time-series .caption .temp-barchart-holder{
-	min-height: 60px;
+	min-height: 120px;
 }
+
+.Detail .weather-icon-holder{
+	width: 100%;
+	overflow:hidden;
+}
+
+.Detail .weather-icon-holder img.invisible{
+	width: 140%;
+	height: auto;
+	margin: -20%;
+	visibility: hidden;
+}
+
+
 
 .time-series .text{
 	min-height: 3.5vw;
