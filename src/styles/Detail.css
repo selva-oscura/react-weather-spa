@@ -37,7 +37,7 @@
 }
 
 .Detail .time-series .caption{
-	font-size: 1.5vw;
+	font-size: 2vw;
 	width: 9%;
 	float:left;
 }
@@ -46,8 +46,8 @@
 	min-height: 120px;
 }
 
-.Detail .weather-icon-holder{
-	width: 100%;
+.Detail .caption .weather-icon-holder{
+	width: 67%;
 	overflow:hidden;
 }
 
@@ -70,4 +70,5 @@
 
 .Detail .time-series p{
 	margin: 0;
+	padding-bottom: 2vw;
 }
