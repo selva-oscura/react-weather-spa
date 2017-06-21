@@ -39,7 +39,7 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 				</div>
 			</div>
 			<div className="time-series">
-				<div className="caption" style={{width: '10%'}}>
+				<div className="caption" style={{width: '15%'}}>
 					<div className="text">
 						<p>
 							Day<br />
@@ -75,7 +75,8 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 					</div>
 					<div className="text">
 						<p>
-							Cloud Cover (%)
+							Cloud Cover<br />
+							(%)
 						</p>
 					</div>
 					<div className="text">
