@@ -78,7 +78,7 @@ class App extends Component {
 						currPage="detail"; 
 						errors=[];
 					}else{
-						errors=["Error?", apiResponse.status, apiResponse.statusText];
+						errors=["Error?", JSON.stringify(apiResponse.status), JSON.stringify(apiResponse.statusText)];
 					}
 					apiCalls.latLonOffsetFromUTCAPI(apiResponse.data.city.coord.lat, apiResponse.data.city.coord.lon)
 						.then((apiResponse, error) => {
@@ -93,9 +93,7 @@ class App extends Component {
 						});
 				}).catch((error) => {
 					console.log('error in catch for submitLocation', error);
-					console.log('error.response.status', error.response.status)
-					console.log('error.response.statusText', error.response.statusText)
-					errors = [`Error: ${error.response.status} ${error.response.statusText}`];
+					errors = [`Error: ${error}`, 'Please check your internet connection.'];
 					currPage = "blank"
 					this.setState({errors, currPage});
 				});
@@ -243,13 +241,13 @@ class App extends Component {
       		aspectRatio={this.state.aspectRatio}
       		currSeason={this.state.currSeason}
       	/>
-        <Header 
-        	handleNav={this.handleNav}
-        	currPage={this.state.currPage}
-        	defaultValue={this.state.searchInput.country}
-        	submitLocation={this.submitLocation}
-        	updateLocation={this.updateLocation}
-        />
+				<Header
+					handleNav={this.handleNav}
+					currPage={this.state.currPage}
+					defaultValue={this.state.searchInput}
+					submitLocation={this.submitLocation}
+					updateLocation={this.updateLocation}
+				/>
         <Body 
         	currPage={this.state.currPage}
         	errors={this.state.errors}
