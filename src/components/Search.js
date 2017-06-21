@@ -27,6 +27,7 @@ const Search = ({ defaultValue, submitLocation, updateLocation }) => {
 						type="text"
 						id="city"
 						placeholder="city, state"
+						value={defaultValue.city}
 						onChange={updateLocation}
 					/>
 				</label>
@@ -36,7 +37,7 @@ const Search = ({ defaultValue, submitLocation, updateLocation }) => {
 					<select
 						id="country"
 						name="select"
-						value={defaultValue}
+						value={defaultValue.country}
 						onChange={updateLocation}
 					>
 						{options}
