@@ -1,5 +1,6 @@
 import React from 'react';
 import Snapshot from './Snapshot';
+import icons from '../resources/icons.js';
 import '../styles/Detail.css';
 
 const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
@@ -11,6 +12,7 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 		max: -Infinity
 	};
 	const snapShotCount = currLocation.data.length;
+
 	currLocation.data.forEach((snapshot) => {
 		tempRange.min = Math.min(tempRange.min, snapshot.main.temp);
 		tempRange.max = Math.max(tempRange.max, snapshot.main.temp);
@@ -19,6 +21,8 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 	tempRange.max = Math.ceil(tempRange.max/5+1)*5;
 
 	console.log("currLocation", currLocation, "\nsettings", settings, "\navedLocations", favedLocations);
+
+
 	return (
 		<div className="Detail">
 			<div className="summary">
@@ -35,7 +39,7 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 				</div>
 			</div>
 			<div className="time-series">
-				<div className="caption">
+				<div className="caption" style={{width: '10%'}}>
 					<div className="text">
 						<p>
 							Day<br />
@@ -48,7 +52,9 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 							Temp (&deg;{ settings.tempFormat==="metric" ? "C" : "F" })
 						</p>
 					</div>
-					<div className="text">&nbsp;</div>
+					<div className="weather-icon-holder">
+						<img src={icons['icon01d']} alt="blank space placeholder" className='invisible' />
+					</div>
 					<div className="text">
 						<p>
 							Rain<br />
@@ -84,14 +90,14 @@ const Detail = ({currLocation, settings, addToFavorites, favedLocations}) => {
 						</p>
 					</div>
 				</div>
-				{currLocation.data.map((snapshot, i) => (
+				{currLocation.data.slice(0,8).map((snapshot, i) => (
 						<Snapshot 
 							key={i} 
 							snapshot={snapshot} 
 							tempFormat={settings.tempFormat} 
 							zoneName={currLocation.zoneName} 
 							tempRange={tempRange} 
-							snapShotCount={snapShotCount}
+							snapShotCount={8}
 						/>
 					)
 				)}
