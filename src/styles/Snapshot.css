@@ -4,7 +4,7 @@
 }
 
 .Snapshot .temp-barchart-holder{
-	min-height: 60px;
+	min-height: 120px;
 	position: relative;
 }
 
@@ -28,6 +28,10 @@
 	width: 140%;
 	height: auto;
 	margin: -20%;
+}
+
+.Snapshot .text{
+	text-align: center;
 }
 
 .Snapshot p{
