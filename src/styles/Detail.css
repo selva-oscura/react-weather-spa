@@ -52,13 +52,12 @@
 }
 
 .Detail .weather-icon-holder img.invisible{
+	max-width: 150px;
 	width: 140%;
 	height: auto;
 	margin: -20%;
 	visibility: hidden;
 }
-
-
 
 .time-series .text{
 	min-height: 3.5vw;

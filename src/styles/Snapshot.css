@@ -24,6 +24,7 @@
 }
 
 .Snapshot img{
+	max-width: 150px;
 	width: 140%;
 	height: auto;
 	margin: -20%;
