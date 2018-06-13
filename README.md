@@ -20,6 +20,6 @@
 	<li>view in browser at localhost:3000</li>
 </ul> 
 
-<p>To use it, visit it at <a href="https://selva-oscura.github.io/react-weather-spa">https://selva-oscura.github.io/react-weather-spa</a>!</p>
+<!-- <p>To use it, visit it at <a href="https://selva-oscura.github.io/react-weather-spa">https://selva-oscura.github.io/react-weather-spa</a>!</p> -->
 
-![Weather Vane](https://github.com/selva-oscura/react-weather-spa/blob/master/weather_vane_screenshot.png)
+![Weather Vane](https://github.com/selva-oscura/react-weather-spa/blob/master/weather-vane-screenshot.png)
